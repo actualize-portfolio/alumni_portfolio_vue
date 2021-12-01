@@ -1,4 +1,5 @@
-import HttpService from "@/services/HttpService.js";
+import HttpService from "@/services/HttpService";
+import books from "@/store/actions/books"
 
 const initialize = ({ commit }) => {
   commit("STOP_LOADING");
@@ -7,19 +8,6 @@ const initialize = ({ commit }) => {
 
 const toggleTheApiVisualizer = ({ commit }) => {
   commit("TOGGLE_API_VISUALIZER");
-};
-
-const loadBooks = ({ commit }) => {
-  commit("START_LOADING");
-  return HttpService.get("books", (status, response) => {
-    commit("ADD_API_REQUEST", {
-      url: "GET /api/v1/books",
-      response,
-      status,
-    });
-    commit("SET_BOOKS", response.data);
-    commit("STOP_LOADING");
-  });
 };
 
 const clearRepos = ({ commit }) => {
@@ -63,35 +51,11 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   });
 };
 
-const removeFavoriteBook = ({ commit }, book) => {
-  HttpService.delete(`/user_books/${book.id}`, (status, response) => {
-    commit("ADD_API_REQUEST", {
-      url: `DELETE /api/v1/user_books/${book.id}`,
-      response,
-      status,
-    });
-    commit("DESTROY_FAVORITE_BOOK", book);
-  });
-};
-
-const setFavoriteBook = ({ commit }, book) => {
-  HttpService.post("/user_books", { book_id: book.id }, (status, response) => {
-    commit("ADD_API_REQUEST", {
-      url: "POST /api/v1/user_books",
-      response,
-      status,
-    });
-    commit("CREATE_FAVORITE_BOOK", book);
-  });
-};
-
 export default {
-  clearRepos,
   initialize,
-  loadBooks,
-  loadRepos,
   login,
-  removeFavoriteBook,
-  setFavoriteBook,
   toggleTheApiVisualizer,
+  clearRepos,
+  loadRepos,
+  ...books,
 };
