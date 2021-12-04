@@ -1,9 +1,9 @@
 <template>
-  <h3>Github Tracker</h3>
-  <p>
-    The most complex undertaking in the project, this portion is also an effort
-    to learn Chart.js.
-  </p>
+  <ProjectInfo
+    title="Github Tracker"
+    description="Displays popularity data for a set of Github Repositories"
+    :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
+  />
   <div class="row">
     <div class="col-sm-6">
       <select
@@ -42,6 +42,7 @@
   />
 </template>
 <script>
+import ProjectInfo from "@/components/ProjectInfo.vue";
 import RepoTrackerChart from "@/components/RepoTrackerChart.vue";
 import RepoTrackerTable from "@/components/RepoTrackerTable.vue";
 import textMixin from "@/mixins/textMixin.js";
@@ -102,6 +103,7 @@ export default {
     },
   },
   components: {
+    ProjectInfo,
     RepoTrackerChart,
     RepoTrackerTable,
   },

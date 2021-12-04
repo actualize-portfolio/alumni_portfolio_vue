@@ -1,20 +1,21 @@
 <template>
-  <h3>Favorite Books</h3>
-  <p>
-    This was one of the first elements of this project. A trial of simple
-    toggling and conditonal templating. It was also the first use of Vuex for a
-    central store, which is now used throughout the app.
-  </p>
+  <ProjectInfo
+    title="Favorite Books"
+    :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
+    description="Uses Vuex and a few backend calls to toggle some fake favorite books"
+  />
   <h4>Favorites Count: {{ favoritesCount() }}</h4>
   <FavoriteBooksTable :books="books" />
 </template>
 
 <script>
+import ProjectInfo from "@/components/ProjectInfo.vue";
 import FavoriteBooksTable from "@/components/FavoriteBooksTable.vue";
 
 export default {
   name: "Books",
   components: {
+    ProjectInfo,
     FavoriteBooksTable,
   },
   computed: {
