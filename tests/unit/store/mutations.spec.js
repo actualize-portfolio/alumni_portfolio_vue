@@ -1,134 +1,50 @@
 import mutations from "@/store/mutations";
-import store from "@/store/store";
+import store from "@/store";
 
 describe("mutations", () => {
   const state = store.state;
 
-  describe("INITIALIZE", () => {
+  describe("initialize", () => {
     it("sets storeReady to true", () => {
-      mutations.INITIALIZE(state);
+      mutations.initialize(state);
 
       expect(state.storeReady).toBe(true);
     });
   });
 
-  describe("SET_TOKEN", () => {
+  describe("setToken", () => {
     it("sets jwt to the passed token", () => {
-      mutations.SET_TOKEN(state, "imatoken");
+      mutations.setToken(state, "imatoken");
 
       expect(state.jwt).toEqual("imatoken");
     });
   });
 
-  describe("SET_BOOKS", () => {
-    it("sets books to the passed value", () => {
-      mutations.SET_BOOKS(state, [{ id: 1 }]);
-
-      expect(state.favoriteBooks.books).toEqual([{ id: 1 }]);
-    });
-  });
-
-  describe("SET_REPOS", () => {
-    it("sets repos to the passed value", () => {
-      mutations.SET_REPOS(state, [{ id: 1 }]);
-
-      expect(state.repoTracker.repos).toEqual([{ id: 1 }]);
-    });
-  });
-
-  describe("SET_CATEGORIES", () => {
-    it("sets categories to the passed value", () => {
-      mutations.SET_CATEGORIES(state, ["javascript_framework"]);
-
-      expect(state.repoTracker.categories).toEqual(["javascript_framework"]);
-    });
-  });
-
-  describe("CREATE_FAVORITE_BOOK", () => {
-    it("sets the passed books is_favorite status to true", () => {
-      state.favoriteBooks.books = [
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ];
-
-      mutations.CREATE_FAVORITE_BOOK(state, state.favoriteBooks.books[0]);
-
-      expect(state.favoriteBooks.books).toEqual([
-        { id: 1, is_favorite: true },
-        { id: 2, is_favorite: true },
-      ]);
-    });
-
-    it("leaves the books alone if books can't be found", () => {
-      state.favoriteBooks.books = [
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ];
-
-      mutations.CREATE_FAVORITE_BOOK(state, { id: 3 });
-
-      expect(state.favoriteBooks.books).toEqual([
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ]);
-    });
-  });
-
-  describe("DESTROY_FAVORITE_BOOK", () => {
-    it("sets the passed books is_favorite status to false", () => {
-      state.favoriteBooks.books = [
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ];
-
-      mutations.DESTROY_FAVORITE_BOOK(state, state.favoriteBooks.books[1]);
-
-      expect(state.favoriteBooks.books).toEqual([
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: false },
-      ]);
-    });
-
-    it("leaves the books alone if books can't be found", () => {
-      state.favoriteBooks.books = [
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ];
-
-      mutations.DESTROY_FAVORITE_BOOK(state, { id: 3 });
-
-      expect(state.favoriteBooks.books).toEqual([
-        { id: 1, is_favorite: false },
-        { id: 2, is_favorite: true },
-      ]);
-    });
-  });
-
-  describe("START_LOADING", () => {
+  describe("startLoading", () => {
     it("sets loading to true", () => {
       state.loading = false;
 
-      mutations.START_LOADING(state);
+      mutations.startLoading(state);
 
       expect(state.loading).toBe(true);
     });
   });
 
-  describe("STOP_LOADING", () => {
+  describe("stopLoading", () => {
     it("sets loading to false", () => {
       state.loading = true;
 
-      mutations.STOP_LOADING(state);
+      mutations.stopLoading(state);
 
       expect(state.loading).toBe(false);
     });
   });
 
-  describe("TOGGLE_API_VISUALIZER", () => {
+  describe("toggleApiVisualizer", () => {
     it("toggles the api visualizer show boolean", () => {
       state.apiVisualizer.show = false;
 
-      mutations.TOGGLE_API_VISUALIZER(state);
+      mutations.toggleApiVisualizer(state);
 
       expect(state.apiVisualizer.show).toBe(true);
     });
@@ -136,14 +52,14 @@ describe("mutations", () => {
     it("clears the apiRequests when flipping to false", () => {
       state.apiVisualizer.show = true;
 
-      mutations.TOGGLE_API_VISUALIZER(state);
+      mutations.toggleApiVisualizer(state);
 
       expect(state.apiVisualizer.show).toBe(false);
       expect(state.apiVisualizer.apiRequests).toEqual([]);
     });
   });
 
-  describe("ADD_API_REQUEST", () => {
+  describe("addApiRequest", () => {
     it("prepends a new api request", () => {
       state.apiVisualizer.apiRequests = [
         {
@@ -156,7 +72,7 @@ describe("mutations", () => {
         },
       ];
 
-      mutations.ADD_API_REQUEST(state, {
+      mutations.addApiRequest(state, {
         url: "GET /github_repos",
         response: {
           data: [],

@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import store from "@/store/store";
+import store from "@/store";
 import SubmitButton from "@/components/SubmitButton.vue";
 
 describe("SubmitButton.vue", () => {
@@ -7,7 +7,7 @@ describe("SubmitButton.vue", () => {
   let button;
 
   beforeEach(async () => {
-    await store.commit("STOP_LOADING");
+    await store.commit("stopLoading");
 
     wrapper = undefined;
     button = undefined;
@@ -29,7 +29,7 @@ describe("SubmitButton.vue", () => {
   });
 
   it("displays the loadingText as button label when loading", async () => {
-    await store.commit("START_LOADING");
+    await store.commit("startLoading");
 
     expect(button.text()).toEqual("Loading");
   });

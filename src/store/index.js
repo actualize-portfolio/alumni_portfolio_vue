@@ -1,20 +1,19 @@
-import { createStore } from "vuex";
+import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
+import favoriteBooks from "@/store/modules/favoriteBooks";
+import repoTracker from "@/store/modules/repoTracker";
 import actions from "./actions";
 import mutations from "./mutations";
 
-const store = createStore({
+const store = new Vuex.Store({
+  modules: {
+    favoriteBooks,
+    repoTracker,
+  },
   state: {
     jwt: null,
     storeReady: false,
     loading: false,
-    favoriteBooks: {
-      books: [],
-    },
-    repoTracker: {
-      repos: [],
-      categories: [],
-    },
     apiVisualizer: {
       show: true,
       apiRequests: [],
