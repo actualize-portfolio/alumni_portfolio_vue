@@ -13,18 +13,18 @@ describe("actions", () => {
   beforeEach(() => (commit = jest.fn()));
 
   describe("initialize", () => {
-    test("initialize calls commit with INITIALIZE", () => {
+    test("initialize calls commit with initialize", () => {
       actions.initialize({ commit });
 
-      expect(commit).toHaveBeenCalledWith("INITIALIZE");
+      expect(commit).toHaveBeenCalledWith("initialize");
     });
   });
 
   describe("toggleTheApiVisualizer", () => {
-    test("toggleTheApiVisualizer calls commit with TOGGLE_API_VISUALIZER", () => {
+    test("toggleTheApiVisualizer calls commit with toggleApiVisualizer", () => {
       actions.toggleTheApiVisualizer({ commit });
 
-      expect(commit).toHaveBeenCalledWith("TOGGLE_API_VISUALIZER");
+      expect(commit).toHaveBeenCalledWith("toggleApiVisualizer");
     });
   });
 
@@ -47,16 +47,16 @@ describe("actions", () => {
         actions.login({ commit }, { username: "test", password: "password" });
       });
 
-      test("login calls commit with START_LOADING", () => {
-        expect(commit).toHaveBeenCalledWith("START_LOADING");
+      test("login calls commit with startLoading", () => {
+        expect(commit).toHaveBeenCalledWith("startLoading");
       });
 
-      test("login calls commit with STOP_LOADING", () => {
-        expect(commit).toHaveBeenCalledWith("STOP_LOADING");
+      test("login calls commit with stopLoading", () => {
+        expect(commit).toHaveBeenCalledWith("stopLoading");
       });
 
-      test("login calls commit with ADD_API_REQUEST", async () => {
-        expect(commit).toHaveBeenCalledWith("ADD_API_REQUEST", {
+      test("login calls commit with addApiRequest", async () => {
+        expect(commit).toHaveBeenCalledWith("addApiRequest", {
           url: "POST /api/v1/login",
           response: {
             data: {
@@ -72,8 +72,8 @@ describe("actions", () => {
           status: 200,
         });
       });
-      test("login calls commit with ADD_TOKEN", async () => {
-        expect(commit).toHaveBeenCalledWith("SET_TOKEN", "imatoken");
+      test("login calls commit with setToken", async () => {
+        expect(commit).toHaveBeenCalledWith("setToken", "imatoken");
       });
     });
 
@@ -87,7 +87,7 @@ describe("actions", () => {
       });
 
       test("it doesn't try to set the token if it's not present", () => {
-        expect(commit).not.toHaveBeenCalledWith("SET_TOKEN");
+        expect(commit).not.toHaveBeenCalledWith("setToken");
       });
     });
   });
