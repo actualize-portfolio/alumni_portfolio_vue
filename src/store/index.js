@@ -1,14 +1,14 @@
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
-import favoriteBooks from "@/store/modules/favoriteBooks"
-import repoTracker from "@/store/modules/repoTracker"
+import favoriteBooks from "@/store/modules/favoriteBooks";
+import repoTracker from "@/store/modules/repoTracker";
 import actions from "./actions";
 import mutations from "./mutations";
 
 const store = new Vuex.Store({
   modules: {
     favoriteBooks,
-    repoTracker
+    repoTracker,
   },
   state: {
     jwt: null,

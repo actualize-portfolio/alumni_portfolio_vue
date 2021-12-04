@@ -5,7 +5,7 @@ const repoTracker = {
     return {
       repos: [],
       categories: [],
-    }
+    };
   },
   mutations: {
     setRepos(state, repos) {
@@ -13,7 +13,7 @@ const repoTracker = {
     },
     setCategories(state, categories) {
       state.categories = categories;
-    }
+    },
   },
   actions: {
     clearRepos({ commit }) {
@@ -38,7 +38,7 @@ const repoTracker = {
         commit("stopLoading");
       });
     },
-  }
-}
+  },
+};
 
 export default repoTracker;

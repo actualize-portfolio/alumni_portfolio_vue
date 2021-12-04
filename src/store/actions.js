@@ -29,5 +29,5 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
 export default {
   initialize,
   login,
-  toggleTheApiVisualizer
+  toggleTheApiVisualizer,
 };

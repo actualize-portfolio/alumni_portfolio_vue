@@ -3,8 +3,8 @@ import HttpService from "@/services/HttpService";
 const favoriteBooks = {
   state() {
     return {
-      books: []
-    }
+      books: [],
+    };
   },
   mutations: {
     setBooks(state, books) {
@@ -27,7 +27,7 @@ const favoriteBooks = {
       }
 
       state.books = [...state.books];
-    }
+    },
   },
   actions: {
     loadBooks({ commit }) {
@@ -42,7 +42,7 @@ const favoriteBooks = {
         commit("stopLoading");
       });
     },
-    removeFavoriteBook({ commit }, book){
+    removeFavoriteBook({ commit }, book) {
       HttpService.delete(`/user_books/${book.id}`, (status, response) => {
         commit("addApiRequest", {
           url: `DELETE /api/v1/user_books/${book.id}`,
@@ -52,17 +52,21 @@ const favoriteBooks = {
         commit("destroyFavoriteBook", book);
       });
     },
-    setFavoriteBook({ commit }, book){
-      HttpService.post("/user_books", { book_id: book.id }, (status, response) => {
-        commit("addApiRequest", {
-          url: "POST /api/v1/user_books",
-          response,
-          status,
-        });
-        commit("createFavoriteBook", book);
-      });
-    }
-  }
-}
+    setFavoriteBook({ commit }, book) {
+      HttpService.post(
+        "/user_books",
+        { book_id: book.id },
+        (status, response) => {
+          commit("addApiRequest", {
+            url: "POST /api/v1/user_books",
+            response,
+            status,
+          });
+          commit("createFavoriteBook", book);
+        }
+      );
+    },
+  },
+};
 
 export default favoriteBooks;
