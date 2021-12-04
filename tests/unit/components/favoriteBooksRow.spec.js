@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import store from "@/store/";
+import store from "@/store";
 import FavoriteBooksRow from "@/components/FavoriteBooksRow.vue";
 
 jest.mock("@/services/HttpService.js", () => ({

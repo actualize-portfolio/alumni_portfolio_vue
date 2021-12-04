@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import store from "@/store/";
+import store from "@/store";
 import FavoriteBooksTable from "@/components/FavoriteBooksTable.vue";
 
 describe("FavoriteBooksTable", () => {

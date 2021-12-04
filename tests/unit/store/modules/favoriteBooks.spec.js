@@ -1,6 +1,6 @@
 import favoriteBooks from "@/store/modules/favoriteBooks";
 import httpService from "@/services/HttpService";
-import store from "@/store/";
+import store from "@/store";
 
 jest.mock("@/services/HttpService.js", () => ({
   get: jest.fn(),

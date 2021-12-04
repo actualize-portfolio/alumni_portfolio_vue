@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import store from "@/store/";
+import store from "@/store";
 import SubmitButton from "@/components/SubmitButton.vue";
 
 describe("SubmitButton.vue", () => {

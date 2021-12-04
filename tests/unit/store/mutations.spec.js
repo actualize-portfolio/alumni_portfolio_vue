@@ -1,5 +1,5 @@
 import mutations from "@/store/mutations";
-import store from "@/store/";
+import store from "@/store";
 
 describe("mutations", () => {
   const state = store.state;
