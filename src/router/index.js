@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { decode } from "jsonwebtoken";
+import store from "@/store";
 
 const LandingPage = () =>
   import(/* webpackChunkName: "landingPage" */ "@/views/LandingPage.vue");
@@ -39,26 +40,13 @@ const routes = [
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.VUE_APP_BASE_URL),
-  routes,
-});
+const router = createRouter({ history: createWebHistory(), routes });
 
 router.beforeEach((to, from, next) => {
-  // trying to access a restricted page + not logged in
-  // redirect to login page
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const jwt = JSON.parse(localStorage.getItem("vuex"))["jwt"];
-    const decodedJwt = decode(jwt);
+    const jwt = store.state.jwt;
 
-    if (!jwt) {
-      next({
-        name: "LoginPage",
-        query: {
-          nextUrl: to.fullPath,
-        },
-      });
-    } else if (decodedJwt.exp < new Date() / 1000) {
+    if (!jwt || decode(jwt).exp < new Date() / 1000) {
       next({
         name: "LoginPage",
         query: {
