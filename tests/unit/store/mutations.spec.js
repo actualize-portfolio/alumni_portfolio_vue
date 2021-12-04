@@ -80,7 +80,7 @@ describe("mutations", () => {
         },
       });
 
-      expect(state.apiVisualizer.apiRequests[0].url).toEqual("github_repos");
+      expect(state.apiVisualizer.apiRequests[0].path).toEqual("github_repos");
     });
   });
 });
