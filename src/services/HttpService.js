@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "@/store";
 
 axios.defaults.baseURL = process.env.VUE_APP_ALUMNI_PORTFOLIO_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
@@ -58,18 +59,21 @@ class HttpService {
 
   get(path, callback) {
     return this.service.get(path).then((response) => {
+      store.dispatch("addApiRequest", { path, response });
       return callback(response.status, response.data);
     });
   }
 
   delete(path, callback) {
     return this.service.delete(path).then((response) => {
+      store.dispatch("addApiRequest", { path, response });
       return callback(response.status, response.data);
     });
   }
 
   post(path, payload, callback) {
     return this.service.post(path, payload).then((response) => {
+      store.dispatch("addApiRequest", { path, payload, response });
       return callback(response.status, response.data);
     });
   }

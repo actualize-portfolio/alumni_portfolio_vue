@@ -25,13 +25,6 @@ describe("favoriteBooks module", () => {
       test("loadBooks calls commit with startLoading", () => {
         expect(commit).toHaveBeenCalledWith("startLoading");
       });
-      test("loadBooks calls commit with addApiRequest", () => {
-        expect(commit).toHaveBeenCalledWith("addApiRequest", {
-          url: "GET /api/v1/books",
-          response: { data: [{ title: "Go Blue" }] },
-          status: 200,
-        });
-      });
       test("loadBooks calls commit with setBooks", () => {
         expect(commit).toHaveBeenCalledWith("setBooks", [{ title: "Go Blue" }]);
       });
@@ -55,20 +48,6 @@ describe("favoriteBooks module", () => {
         favoriteBooks.actions.removeFavoriteBook({ commit }, { id: 1 });
       });
 
-      test("removeFavoriteBook calls commit with addApiRequest", () => {
-        expect(commit).toHaveBeenCalledWith("addApiRequest", {
-          url: "DELETE /api/v1/user_books/1",
-          response: {
-            data: {
-              book_id: 2,
-              id: 12,
-              user_id: 3,
-            },
-            errors: [],
-          },
-          status: 200,
-        });
-      });
       test("removeFavoriteBook calls commit with destroyFavoriteBook", () => {
         expect(commit).toHaveBeenCalledWith("destroyFavoriteBook", { id: 1 });
       });
@@ -89,20 +68,6 @@ describe("favoriteBooks module", () => {
         favoriteBooks.actions.setFavoriteBook({ commit }, { id: 1 });
       });
 
-      test("setFavoriteBook calls commit with addApiRequest", () => {
-        expect(commit).toHaveBeenCalledWith("addApiRequest", {
-          url: "POST /api/v1/user_books",
-          response: {
-            data: {
-              book_id: 1,
-              id: 15,
-              user_id: 3,
-            },
-            errors: [],
-          },
-          status: 200,
-        });
-      });
       test("setFavoriteBook calls commit with createFavoriteBook", () => {
         expect(commit).toHaveBeenCalledWith("createFavoriteBook", { id: 1 });
       });

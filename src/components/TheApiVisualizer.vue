@@ -24,11 +24,11 @@
         data-bs-parent="#apiRequests"
       >
         <div class="accordion-body">
-          <pre v-if="request.payload">
-            {{ JSON.stringify(request.payload, undefined, 2) }}
+          <pre v-if="objectPresent(request.payload)"
+            >{{ prettyJson(request.payload) }}
           </pre>
-          <pre>
-            {{ JSON.stringify(request.response, undefined, 2) }}
+          <pre v-if="objectPresent(request.response)"
+            >{{ prettyJson(request.response) }}
           </pre>
         </div>
       </div>
@@ -38,6 +38,14 @@
 <script>
 export default {
   name: "TheApiVisualizer",
+  methods: {
+    objectPresent(object) {
+      return object && Object.keys(object).length > 0;
+    },
+    prettyJson(object) {
+      return JSON.stringify(object, undefined, 2);
+    },
+  },
 };
 </script>
 <style scoped>

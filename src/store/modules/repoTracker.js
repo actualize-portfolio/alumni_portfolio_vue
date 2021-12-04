@@ -22,11 +22,6 @@ const repoTracker = {
     loadRepos({ commit }) {
       commit("startLoading");
       return HttpService.get(`github_repos`, (status, response) => {
-        commit("addApiRequest", {
-          url: "GET /api/v1/github_repos",
-          response,
-          status,
-        });
         commit("setRepos", response.data);
         commit("setCategories", [
           ...new Set(

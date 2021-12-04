@@ -54,13 +54,6 @@ describe("repoTracker module", () => {
       test("loadRepos calls commit with startLoading", () => {
         expect(commit).toHaveBeenCalledWith("startLoading");
       });
-      test("loadRepos calls commit with addApiRequest", () => {
-        expect(commit).toHaveBeenCalledWith("addApiRequest", {
-          url: "GET /api/v1/github_repos",
-          response: { data: repos },
-          status: 200,
-        });
-      });
       test("loadRepos calls commit with setCategories", () => {
         expect(commit).toHaveBeenCalledWith("setCategories", [
           "javascript_framework",

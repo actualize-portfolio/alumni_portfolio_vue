@@ -27,13 +27,26 @@ const addApiRequest = (state, request) => {
   state.apiVisualizer.apiRequests = [
     {
       id: uuidv4(),
-      url: request.url,
-      status: request.status,
-      response: request.response,
+      url: request.path,
+      status: request.response.status,
+      payload: filterSensitiveKeys(request.payload),
+      response: filterSensitiveKeys(request.response),
     },
     ...state.apiVisualizer.apiRequests,
   ];
 };
+
+function filterSensitiveKeys(object = {}) {
+  const sensitiveKeys = ["password"];
+
+  return Object.keys(object).reduce(
+    (attrs, key) => ({
+      ...attrs,
+      [key]: sensitiveKeys.includes(key) ? "[REDACTED]" : object[key],
+    }),
+    {}
+  );
+}
 
 export default {
   initialize,
