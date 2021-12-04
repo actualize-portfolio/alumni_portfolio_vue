@@ -23,14 +23,14 @@ const toggleApiVisualizer = (state) => {
   state.apiVisualizer.show = !state.apiVisualizer.show;
 };
 
-const addApiRequest = (state, request) => {
+const addApiRequest = (state, { path, payload, response }) => {
   state.apiVisualizer.apiRequests = [
     {
       id: uuidv4(),
-      url: request.path,
-      status: request.response.status,
-      payload: filterSensitiveKeys(request.payload),
-      response: filterSensitiveKeys(request.response),
+      path,
+      status: response.status,
+      payload: filterSensitiveKeys(payload),
+      response: filterSensitiveKeys(response),
     },
     ...state.apiVisualizer.apiRequests,
   ];

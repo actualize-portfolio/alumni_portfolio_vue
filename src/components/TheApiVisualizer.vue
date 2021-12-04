@@ -14,7 +14,7 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          {{ request.url }} ... responded with {{ request.status }}
+          {{ request.path }} ... responded with {{ request.status }}
         </button>
       </h2>
       <div
