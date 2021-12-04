@@ -33,38 +33,19 @@ const favoriteBooks = {
     loadBooks({ commit }) {
       commit("startLoading");
       return HttpService.get("books", (status, response) => {
-        commit("addApiRequest", {
-          url: "GET /api/v1/books",
-          response,
-          status,
-        });
         commit("setBooks", response.data);
         commit("stopLoading");
       });
     },
     removeFavoriteBook({ commit }, book) {
-      HttpService.delete(`/user_books/${book.id}`, (status, response) => {
-        commit("addApiRequest", {
-          url: `DELETE /api/v1/user_books/${book.id}`,
-          response,
-          status,
-        });
+      HttpService.delete(`/user_books/${book.id}`, () => {
         commit("destroyFavoriteBook", book);
       });
     },
     setFavoriteBook({ commit }, book) {
-      HttpService.post(
-        "/user_books",
-        { book_id: book.id },
-        (status, response) => {
-          commit("addApiRequest", {
-            url: "POST /api/v1/user_books",
-            response,
-            status,
-          });
-          commit("createFavoriteBook", book);
-        }
-      );
+      HttpService.post("/user_books", { book_id: book.id }, () => {
+        commit("createFavoriteBook", book);
+      });
     },
   },
 };

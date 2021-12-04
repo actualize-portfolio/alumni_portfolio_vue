@@ -64,7 +64,7 @@ describe("mutations", () => {
       state.apiVisualizer.apiRequests = [
         {
           id: "123abc",
-          url: "GET /books",
+          path: "books",
           response: {
             body: [],
             status: 200,
@@ -73,16 +73,14 @@ describe("mutations", () => {
       ];
 
       mutations.addApiRequest(state, {
-        url: "GET /github_repos",
+        path: "github_repos",
         response: {
           data: [],
           status: 200,
         },
       });
 
-      expect(state.apiVisualizer.apiRequests[0].url).toEqual(
-        "GET /github_repos"
-      );
+      expect(state.apiVisualizer.apiRequests[0].path).toEqual("github_repos");
     });
   });
 });

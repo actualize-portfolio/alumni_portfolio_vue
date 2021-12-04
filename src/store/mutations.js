@@ -23,17 +23,30 @@ const toggleApiVisualizer = (state) => {
   state.apiVisualizer.show = !state.apiVisualizer.show;
 };
 
-const addApiRequest = (state, request) => {
+const addApiRequest = (state, { path, payload, response }) => {
   state.apiVisualizer.apiRequests = [
     {
       id: uuidv4(),
-      url: request.url,
-      status: request.status,
-      response: request.response,
+      path,
+      status: response.status,
+      payload: filterSensitiveKeys(payload),
+      response: filterSensitiveKeys(response),
     },
     ...state.apiVisualizer.apiRequests,
   ];
 };
+
+function filterSensitiveKeys(object = {}) {
+  const sensitiveKeys = ["password"];
+
+  return Object.keys(object).reduce(
+    (attrs, key) => ({
+      ...attrs,
+      [key]: sensitiveKeys.includes(key) ? "[REDACTED]" : object[key],
+    }),
+    {}
+  );
+}
 
 export default {
   initialize,

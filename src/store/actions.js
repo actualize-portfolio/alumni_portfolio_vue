@@ -9,15 +9,14 @@ const toggleTheApiVisualizer = ({ commit }) => {
   commit("toggleApiVisualizer");
 };
 
+const addApiRequest = ({ commit }, apiRequest) => {
+  commit("addApiRequest", apiRequest);
+};
+
 const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("startLoading");
   HttpService.post(`login`, { username, password }, (status, response) => {
     commit("stopLoading");
-    commit("addApiRequest", {
-      url: "POST /api/v1/login",
-      response,
-      status,
-    });
 
     if (response.data.token) {
       commit("setToken", response.data.token);
@@ -30,4 +29,5 @@ export default {
   initialize,
   login,
   toggleTheApiVisualizer,
+  addApiRequest,
 };

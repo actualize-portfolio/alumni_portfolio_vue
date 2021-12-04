@@ -54,24 +54,6 @@ describe("actions", () => {
       test("login calls commit with stopLoading", () => {
         expect(commit).toHaveBeenCalledWith("stopLoading");
       });
-
-      test("login calls commit with addApiRequest", async () => {
-        expect(commit).toHaveBeenCalledWith("addApiRequest", {
-          url: "POST /api/v1/login",
-          response: {
-            data: {
-              user: {
-                username: "demo_user@test.com",
-                age: 30,
-                favorites: [],
-              },
-              token: "imatoken",
-            },
-            errors: [],
-          },
-          status: 200,
-        });
-      });
       test("login calls commit with setToken", async () => {
         expect(commit).toHaveBeenCalledWith("setToken", "imatoken");
       });
