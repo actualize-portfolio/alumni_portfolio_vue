@@ -10,10 +10,10 @@ describe("ProjectInfo", () => {
       props: {
         title: "Two-word Title",
         contributor: {
-          name: 2,
-          email: "Great Expections",
+          name: "James Gates",
+          email: "gatorjuice@gmail.com",
         },
-        description: "",
+        description: "A project description",
       },
     });
   });
