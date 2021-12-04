@@ -73,7 +73,7 @@ describe("repoTracker module", () => {
         expect(commit).toHaveBeenCalledWith("stopLoading");
       });
     });
-  })
+  });
 
   describe("mutations", () => {
     const state = store.state;

@@ -96,7 +96,7 @@ describe("favoriteBooks module", () => {
             data: {
               book_id: 1,
               id: 15,
-              user_id: 3
+              user_id: 3,
             },
             errors: [],
           },
@@ -107,9 +107,9 @@ describe("favoriteBooks module", () => {
         expect(commit).toHaveBeenCalledWith("createFavoriteBook", { id: 1 });
       });
     });
-  })
+  });
 
-  describe('mutations', () => {
+  describe("mutations", () => {
     const state = store.state;
 
     describe("setBooks", () => {
