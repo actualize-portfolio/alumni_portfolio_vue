@@ -10,6 +10,8 @@ const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
+const PinnysProject = () =>
+  import(/* webpackChunkName: "loginPage" */ "@/views/PinnysProject.vue");
 
 const routes = [
   {
@@ -36,6 +38,14 @@ const routes = [
     component: RepoTracker,
     meta: {
       requiresAuth: true,
+    },
+  },
+  {
+    path: "/pinnys_project",
+    name: "PinnysProject",
+    component: PinnysProject,
+    meta: {
+      requiresAuth: false,
     },
   },
 ];
