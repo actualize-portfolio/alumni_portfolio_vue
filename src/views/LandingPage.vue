@@ -10,10 +10,7 @@
         <a href="mailto:fixme">fixme</a>
       </div>
       <h2 class="mb-5">Alumni Portfolio Project</h2>
-      <p class="lead mb-5">
-        This project exists for educational and experimentational reasons.
-        Written in Vue.js, it consumes a Rails API.
-      </p>
+      <p class="lead mb-5">Fixme</p>
       <div class="flex-grow-1">
         <h3 class="mb-0">Front End</h3>
         <div class="subheading mb-3">
@@ -27,7 +24,11 @@
         <p>Fixme</p>
       </div>
       <div class="flex-shrink-0">
-        <span class="text-primary"><a href="#">Project link</a></span>
+        <span class="text-primary"
+          ><a href="https://github.com/actualize-portfolio/alumni_portfolio_vue"
+            >See project on Github</a
+          ></span
+        >
       </div>
       <div
         class="d-flex flex-column flex-md-row justify-content-between mb-5"
@@ -37,19 +38,25 @@
         <div class="subheading mb-3">
           <a href="https://rubyonrails.org/">Ruby on Rails</a>
         </div>
-        <p>Rails backend description</p>
+        <p>Fixme</p>
       </div>
       <div class="flex-shrink-0">
-        <span class="text-primary"><a href="#">See project on Github</a></span>
+        <span class="text-primary"
+          ><a href="https://github.com/actualize-portfolio/alumni_portfolio_api"
+            >See project on Github</a
+          ></span
+        >
       </div>
       <div
         class="d-flex flex-column flex-md-row justify-content-between mb-5"
       ></div>
       <div class="social-icons">
-        <a class="social-icon" href="https://github.com/gatorjuice"
+        <a class="social-icon" href="https://github.com/actualize-portfolio"
           ><i class="fab fa-github"></i
         ></a>
-        <a class="social-icon" href="https://www.linkedin.com/in/jamesrgates48/"
+        <a
+          class="social-icon"
+          href="https://www.linkedin.com/school/actualize-coding-bootcamp/mycompany/"
           ><i class="fab fa-linkedin"></i
         ></a>
       </div>
