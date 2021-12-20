@@ -18,6 +18,7 @@ class HttpService {
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
 
+    /* istanbul ignore next */
     if (process.env.NODE_ENV === "development") {
       service.interceptors.request.use((request) => {
         console.log("Starting Request", JSON.stringify(request, null, 2));
@@ -37,25 +38,24 @@ class HttpService {
     return response;
   }
 
-  handleError = (error) => {
-    console.log(error);
+  handleError(error) {
     switch (error.response.status) {
       case 401:
-        this.redirectTo(document, "/login");
+        this.redirectTo("/login");
         break;
       case 404:
-        this.redirectTo(document, "/");
+        this.redirectTo("/");
         break;
       default:
-        this.redirectTo(document, "/");
+        this.redirectTo("/");
         break;
     }
     return Promise.reject(error);
-  };
+  }
 
-  redirectTo = (document, path) => {
+  redirectTo(path) {
     document.location = path;
-  };
+  }
 
   get(path, callback) {
     return this.service.get(path).then((response) => {
