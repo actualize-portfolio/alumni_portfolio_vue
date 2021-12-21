@@ -26,7 +26,7 @@ const routes = [
     path: "/books",
     name: "FavoriteBooks",
     component: FavoriteBooks,
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: true },
   },
   {
     path: "/repo_tracker",
