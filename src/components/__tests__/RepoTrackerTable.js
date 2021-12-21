@@ -1,5 +1,4 @@
 import { mount } from "@vue/test-utils";
-import store from "@/store";
 import RepoTrackerTable from "@/components/RepoTrackerTable.vue";
 
 describe("RepoTrackerTable", () => {
