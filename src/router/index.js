@@ -26,17 +26,13 @@ const routes = [
     path: "/books",
     name: "FavoriteBooks",
     component: FavoriteBooks,
-    meta: {
-      requiresAuth: true,
-    },
+    meta: { requiresAuth: false },
   },
   {
     path: "/repo_tracker",
     name: "RepoTracker",
     component: RepoTracker,
-    meta: {
-      requiresAuth: true,
-    },
+    meta: { requiresAuth: false },
   },
 ];
 
