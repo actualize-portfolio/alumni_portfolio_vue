@@ -31,6 +31,12 @@ describe("handleSuccess", () => {
       },
     });
   });
+
+  it("dispatches the stopLoading action", () => {
+    HttpService.handleSuccess(response);
+
+    expect(storeSpy).toHaveBeenCalledWith("stopLoading");
+  });
 });
 
 describe("handleError", () => {
