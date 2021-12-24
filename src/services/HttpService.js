@@ -35,6 +35,7 @@ class HttpService {
   }
 
   handleSuccess(response) {
+    store.dispatch("stopLoading");
     store.dispatch("addApiRequest", {
       path: response.request.responseURL,
       response,

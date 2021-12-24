@@ -57,9 +57,6 @@ describe("actions", () => {
         expect(commit).toHaveBeenCalledWith("startLoading");
       });
 
-      test("login calls commit with stopLoading", () => {
-        expect(commit).toHaveBeenCalledWith("stopLoading");
-      });
       test("login calls commit with setToken", async () => {
         expect(commit).toHaveBeenCalledWith("setToken", "imatoken");
       });
