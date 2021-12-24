@@ -5,6 +5,10 @@ const initialize = ({ commit }) => {
   commit("initialize");
 };
 
+const stopLoading = ({ commit }) => {
+  commit("stopLoading");
+};
+
 const toggleTheApiVisualizer = ({ commit }) => {
   commit("toggleApiVisualizer");
 };
@@ -15,9 +19,7 @@ const addApiRequest = ({ commit }, apiRequest) => {
 
 const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("startLoading");
-  HttpService.post(`login`, { username, password }, (status, response) => {
-    commit("stopLoading");
-
+  HttpService.post(`login`, { username, password }).then((response) => {
     if (response.data.token) {
       commit("setToken", response.data.token);
       document.location = redirectTo;
@@ -27,6 +29,7 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
 
 export default {
   initialize,
+  stopLoading,
   login,
   toggleTheApiVisualizer,
   addApiRequest,

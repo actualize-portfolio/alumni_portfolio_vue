@@ -8,6 +8,8 @@ jest.mock("@/services/HttpService.js", () => ({
   delete: jest.fn(),
 }));
 
+beforeEach(() => jest.clearAllMocks());
+
 describe("favoriteBooks module", () => {
   describe("actions", () => {
     let commit;
@@ -15,11 +17,14 @@ describe("favoriteBooks module", () => {
     beforeEach(() => (commit = jest.fn()));
 
     describe("loadBooks", () => {
-      beforeEach(() => {
-        httpService.get.mockImplementation((_, callback) =>
-          callback(200, { data: [{ title: "Go Blue" }] })
+      beforeEach(async () => {
+        httpService.get.mockImplementation(() =>
+          Promise.resolve({
+            data: [{ title: "Go Blue" }],
+          })
         );
-        favoriteBooks.actions.loadBooks({ commit });
+
+        await favoriteBooks.actions.loadBooks({ commit });
       });
 
       test("loadBooks calls commit with startLoading", () => {
@@ -35,8 +40,8 @@ describe("favoriteBooks module", () => {
 
     describe("removeFavoriteBook", () => {
       beforeEach(() => {
-        httpService.delete.mockImplementation((_, callback) =>
-          callback(200, {
+        httpService.delete.mockImplementation(() =>
+          Promise.resolve({
             data: {
               id: 12,
               user_id: 3,
@@ -45,6 +50,7 @@ describe("favoriteBooks module", () => {
             errors: [],
           })
         );
+
         favoriteBooks.actions.removeFavoriteBook({ commit }, { id: 1 });
       });
 
@@ -55,8 +61,8 @@ describe("favoriteBooks module", () => {
 
     describe("setFavoriteBook", () => {
       beforeEach(() => {
-        httpService.post.mockImplementation((_, __, callback) =>
-          callback(200, {
+        httpService.post.mockImplementation(() =>
+          Promise.resolve({
             data: {
               id: 15,
               user_id: 3,
@@ -65,6 +71,7 @@ describe("favoriteBooks module", () => {
             errors: [],
           })
         );
+
         favoriteBooks.actions.setFavoriteBook({ commit }, { id: 1 });
       });
 

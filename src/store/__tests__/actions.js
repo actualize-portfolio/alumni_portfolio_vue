@@ -7,6 +7,8 @@ jest.mock("@/services/HttpService.js", () => ({
   delete: jest.fn(),
 }));
 
+beforeEach(() => jest.clearAllMocks());
+
 describe("actions", () => {
   let commit;
 
@@ -30,9 +32,9 @@ describe("actions", () => {
 
   describe("login", () => {
     describe("when token obtained", () => {
-      beforeEach(() => {
-        httpService.post.mockImplementation((path, payload, callback) =>
-          callback(200, {
+      beforeEach(async () => {
+        httpService.post.mockImplementation(() =>
+          Promise.resolve({
             data: {
               user: {
                 username: "demo_user@test.com",
@@ -44,7 +46,11 @@ describe("actions", () => {
             errors: [],
           })
         );
-        actions.login({ commit }, { username: "test", password: "password" });
+
+        await actions.login(
+          { commit },
+          { username: "test", password: "password" }
+        );
       });
 
       test("login calls commit with startLoading", () => {
@@ -59,13 +65,19 @@ describe("actions", () => {
       });
     });
 
-    // cannot figure out why this mock affects other test, I've tried clearing, resettin...
-    xdescribe("when token is not obtained", () => {
-      beforeEach(() => {
-        httpService.post.mockImplementation((path, payload, callback) =>
-          callback(401, { data: {}, errors: ["bad request"] })
+    describe("when token is not obtained", () => {
+      beforeEach(async () => {
+        httpService.post.mockImplementation(() =>
+          Promise.resolve({
+            data: {},
+            errors: ["bad request"],
+          })
         );
-        actions.login({ commit }, { username: "test", password: "password" });
+
+        await actions.login(
+          { commit },
+          { username: "test", password: "password" }
+        );
       });
 
       test("it doesn't try to set the token if it's not present", () => {

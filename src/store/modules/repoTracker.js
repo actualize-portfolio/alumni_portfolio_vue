@@ -21,16 +21,16 @@ const repoTracker = {
     },
     loadRepos({ commit }) {
       commit("startLoading");
-      return HttpService.get(`github_repos`, (status, response) => {
-        commit("setRepos", response.data);
+      HttpService.get("github_repos").then((response) => {
+        const data = response.data;
+        commit("setRepos", data);
         commit("setCategories", [
           ...new Set(
-            response.data.map((repo) => {
+            data.map((repo) => {
               return repo.category;
             })
           ),
         ]);
-        commit("stopLoading");
       });
     },
   },

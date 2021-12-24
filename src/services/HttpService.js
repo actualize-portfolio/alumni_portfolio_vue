@@ -35,10 +35,15 @@ class HttpService {
   }
 
   handleSuccess(response) {
-    return response;
+    store.dispatch("addApiRequest", {
+      path: response.request.responseURL,
+      response,
+    });
+    return response.data;
   }
 
   handleError(error) {
+    store.dispatch("stopLoading");
     switch (error.response.status) {
       case 401:
         this.redirectTo("/login");
@@ -57,25 +62,16 @@ class HttpService {
     document.location = path;
   }
 
-  get(path, callback) {
-    return this.service.get(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
-    });
+  get(path) {
+    return this.service.get(path);
   }
 
-  delete(path, callback) {
-    return this.service.delete(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
-    });
+  delete(path) {
+    return this.service.delete(path);
   }
 
-  post(path, payload, callback) {
-    return this.service.post(path, payload).then((response) => {
-      store.dispatch("addApiRequest", { path, payload, response });
-      return callback(response.status, response.data);
-    });
+  post(path, payload) {
+    return this.service.post(path, payload);
   }
 }
 

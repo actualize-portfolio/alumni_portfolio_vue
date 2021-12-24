@@ -3,21 +3,43 @@ import HttpService from "@/services/HttpService";
 import store from "@/store";
 
 const storeSpy = jest.spyOn(store, "dispatch");
-const redirectToSpy = jest.spyOn(HttpService, "redirectTo");
-const callbackSpy = jest.fn(() => {});
 
 beforeEach(() => jest.clearAllMocks());
 
 describe("handleSuccess", () => {
+  const response = {
+    data: { data: { foo: "bar" } },
+    request: { responseURL: "https://google.com" },
+    status: 200,
+  };
+
   it("returns what it was passed", () => {
-    expect(HttpService.handleSuccess({ foo: "bar" })).toEqual({ foo: "bar" });
+    expect(HttpService.handleSuccess(response)).toEqual({
+      data: { foo: "bar" },
+    });
+  });
+
+  it("dispatches the addApiRequest action", () => {
+    HttpService.handleSuccess(response);
+
+    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
+      path: "https://google.com",
+      response: {
+        data: { data: { foo: "bar" } },
+        request: { responseURL: "https://google.com" },
+        status: 200,
+      },
+    });
   });
 });
 
 describe("handleError", () => {
+  const redirectToSpy = jest.spyOn(HttpService, "redirectTo");
   redirectToSpy.mockImplementation(() => {});
+
   describe("when 401", () => {
     const errorObj = { response: { status: 401 } };
+
     it("returns a rejected promise", () => {
       expect(
         HttpService.handleError(errorObj).catch((error) => {
@@ -25,13 +47,17 @@ describe("handleError", () => {
         })
       );
     });
+
     it("redirects to login page", () => {
       HttpService.handleError(errorObj).catch(() => {});
+
       expect(redirectToSpy).toHaveBeenCalledWith("/login");
     });
   });
+
   describe("when 404", () => {
     const errorObj = { response: { status: 404 } };
+
     it("returns a rejected promise", () => {
       expect(
         HttpService.handleError(errorObj).catch((error) => {
@@ -39,6 +65,7 @@ describe("handleError", () => {
         })
       );
     });
+
     it("redirects to root", () => {
       HttpService.handleError(errorObj).catch(() => {});
       expect(redirectToSpy).toHaveBeenCalledWith("/");
@@ -47,56 +74,58 @@ describe("handleError", () => {
 });
 
 describe("get", () => {
+  let response;
+
+  beforeEach(async () => {
+    response = await HttpService.get("google.com");
+  });
+
   it("makes HTTP GET requests with provided arguments", () => {
-    HttpService.get("google.com", () => {});
     expect(getSpy).toHaveBeenCalledWith("google.com");
   });
-  it("dispatches the addApiRequest action", async () => {
-    await HttpService.get("google.com", () => {});
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
-  it("returns the result of the request", async () => {
-    await HttpService.get("google.com", callbackSpy);
-    expect(callbackSpy).toHaveBeenCalledWith(200, { foo: "bar" });
+
+  it("returns the result of the request", () => {
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
   });
 });
 
 describe("post", () => {
+  let response;
+
+  beforeEach(async () => {
+    response = await HttpService.post("google.com", { foo: "bar" });
+  });
+
   it("makes HTTP POST requests with provided arguments", () => {
-    HttpService.post("google.com", { foo: "bar" }, () => {});
     expect(postSpy).toHaveBeenCalledWith("google.com", { foo: "bar" });
   });
-  it("dispatches the addApiRequest action", async () => {
-    await HttpService.post("google.com", {}, () => {});
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      payload: {},
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
+
   it("returns the result of the request", async () => {
-    await HttpService.post("google.com", {}, callbackSpy);
-    expect(callbackSpy).toHaveBeenCalledWith(200, { foo: "bar" });
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
+  });
+
+  it("catches rejected promise and returns the error", async () => {
+    postSpy.mockImplementation(() => Promise.reject({ error: "foo" }));
+    const catchSpy = jest.fn(() => {});
+
+    await HttpService.post("google.com", {}).catch(catchSpy);
+
+    expect(catchSpy).toHaveBeenCalledWith({ error: "foo" });
   });
 });
 
 describe("delete", () => {
+  let response;
+
+  beforeEach(async () => {
+    response = await HttpService.delete("google.com");
+  });
+
   it("makes HTTP GET requests with provided arguments", () => {
-    HttpService.delete("google.com", () => {});
     expect(deleteSpy).toHaveBeenCalledWith("google.com");
   });
-  it("dispatches the addApiRequest action", async () => {
-    await HttpService.delete("google.com", () => {});
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
+
   it("returns the result of the request", async () => {
-    await HttpService.delete("google.com", callbackSpy);
-    expect(callbackSpy).toHaveBeenCalledWith(200, { foo: "bar" });
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
   });
 });

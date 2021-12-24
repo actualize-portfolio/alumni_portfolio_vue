@@ -60,7 +60,7 @@ describe("mutations", () => {
   });
 
   describe("addApiRequest", () => {
-    it("prepends a new api request", () => {
+    it("prepends a new api request with filtered params", () => {
       state.apiVisualizer.apiRequests = [
         {
           id: "123abc",
@@ -74,13 +74,20 @@ describe("mutations", () => {
 
       mutations.addApiRequest(state, {
         path: "github_repos",
+        payload: {
+          username: "gatorjuice",
+          password: "p@ssw@rd",
+        },
         response: {
           data: [],
           status: 200,
         },
       });
 
-      expect(state.apiVisualizer.apiRequests[0].path).toEqual("github_repos");
+      const newApiRequest = state.apiVisualizer.apiRequests[0];
+
+      expect(newApiRequest.path).toEqual("github_repos");
+      expect(newApiRequest.payload.password).toEqual("[REDACTED]");
     });
   });
 });

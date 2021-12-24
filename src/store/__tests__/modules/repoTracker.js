@@ -6,6 +6,8 @@ jest.mock("@/services/HttpService.js", () => ({
   get: jest.fn(),
 }));
 
+beforeEach(() => jest.clearAllMocks());
+
 describe("repoTracker module", () => {
   describe("repoTracker", () => {
     let commit;
@@ -44,26 +46,28 @@ describe("repoTracker module", () => {
         },
       ];
 
-      beforeEach(() => {
-        httpService.get.mockImplementation((_, callback) =>
-          callback(200, { data: repos })
+      beforeEach(async () => {
+        httpService.get.mockImplementation(() =>
+          Promise.resolve({
+            data: repos,
+          })
         );
-        repoTracker.actions.loadRepos({ commit }, "the burbs");
+
+        await repoTracker.actions.loadRepos({ commit }, "the burbs");
       });
 
       test("loadRepos calls commit with startLoading", () => {
         expect(commit).toHaveBeenCalledWith("startLoading");
       });
+
       test("loadRepos calls commit with setCategories", () => {
         expect(commit).toHaveBeenCalledWith("setCategories", [
           "javascript_framework",
         ]);
       });
+
       test("loadRepos calls commit with setRepos", () => {
         expect(commit).toHaveBeenCalledWith("setRepos", repos);
-      });
-      test("loadRepos calls commit with stopLoading", () => {
-        expect(commit).toHaveBeenCalledWith("stopLoading");
       });
     });
   });
