@@ -36,25 +36,31 @@
     <tbody>
       <tr v-for="repo in repos" :key="repo.id" :data-test="`repo${repo.id}`">
         <td>{{ repo.name }}</td>
-        <td class="text-end">{{ formatInteger(repo.forks_count) }}</td>
-        <td class="text-end">{{ formatInteger(repo.stargazers_count) }}</td>
-        <td class="text-end">{{ formatInteger(repo.watchers_count) }}</td>
-        <td class="text-end">{{ formatInteger(repo.popularity_rating) }}</td>
+        <td class="text-end">
+          {{ $_textMixin_formatNumber(repo.forks_count) }}
+        </td>
+        <td class="text-end">
+          {{ $_textMixin_formatNumber(repo.stargazers_count) }}
+        </td>
+        <td class="text-end">
+          {{ $_textMixin_formatNumber(repo.watchers_count) }}
+        </td>
+        <td class="text-end">
+          {{ $_textMixin_formatNumber(repo.popularity_rating) }}
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 <script>
+import textMixin from "@/mixins/textMixin.js";
+
 export default {
   name: "RepoTrackerTable",
+  mixins: [textMixin],
   props: {
     repos: {
       type: Array,
-    },
-  },
-  methods: {
-    formatInteger(integer) {
-      return integer.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };

@@ -3,10 +3,13 @@ import HttpService from "@/services/HttpService";
 import store from "@/store";
 
 const storeSpy = jest.spyOn(store, "dispatch");
-const redirectToSpy = jest.spyOn(HttpService, "redirectTo");
 const callbackSpy = jest.fn(() => {});
 
 beforeEach(() => jest.clearAllMocks());
+
+describe("redirectTo", () => {
+  it("sets the Authorization header when jwt exists", () => {});
+});
 
 describe("handleSuccess", () => {
   it("returns what it was passed", () => {
@@ -15,7 +18,9 @@ describe("handleSuccess", () => {
 });
 
 describe("handleError", () => {
+  const redirectToSpy = jest.spyOn(HttpService, "redirectTo");
   redirectToSpy.mockImplementation(() => {});
+
   describe("when 401", () => {
     const errorObj = { response: { status: 401 } };
     it("returns a rejected promise", () => {

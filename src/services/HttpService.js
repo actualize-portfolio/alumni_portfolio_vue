@@ -72,10 +72,15 @@ class HttpService {
   }
 
   post(path, payload, callback) {
-    return this.service.post(path, payload).then((response) => {
-      store.dispatch("addApiRequest", { path, payload, response });
-      return callback(response.status, response.data);
-    });
+    return this.service
+      .post(path, payload)
+      .then((response) => {
+        store.dispatch("addApiRequest", { path, payload, response });
+        return callback(response.status, response.data);
+      })
+      .catch((error) => {
+        return error;
+      });
   }
 }
 
