@@ -6,13 +6,30 @@ const storeSpy = jest.spyOn(store, "dispatch");
 
 beforeEach(() => jest.clearAllMocks());
 
-describe("redirectTo", () => {
-  it("sets the Authorization header when jwt exists", () => {});
-});
-
 describe("handleSuccess", () => {
+  const response = {
+    data: { data: { foo: "bar" } },
+    request: { responseURL: "https://google.com" },
+    status: 200,
+  };
+
   it("returns what it was passed", () => {
-    expect(HttpService.handleSuccess({ foo: "bar" })).toEqual({ foo: "bar" });
+    expect(HttpService.handleSuccess(response)).toEqual({
+      data: { foo: "bar" },
+    });
+  });
+
+  it("dispatches the addApiRequest action", () => {
+    HttpService.handleSuccess(response);
+
+    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
+      path: "https://google.com",
+      response: {
+        data: { data: { foo: "bar" } },
+        request: { responseURL: "https://google.com" },
+        status: 200,
+      },
+    });
   });
 });
 
@@ -67,39 +84,24 @@ describe("get", () => {
     expect(getSpy).toHaveBeenCalledWith("google.com");
   });
 
-  it("dispatches the addApiRequest action", () => {
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
-
   it("returns the result of the request", () => {
-    expect(response).toEqual({ foo: "bar" });
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
   });
 });
 
 describe("post", () => {
-  it("makes HTTP POST requests with provided arguments", () => {
-    HttpService.post("google.com", { foo: "bar" });
+  let response;
 
+  beforeEach(async () => {
+    response = await HttpService.post("google.com", { foo: "bar" });
+  });
+
+  it("makes HTTP POST requests with provided arguments", () => {
     expect(postSpy).toHaveBeenCalledWith("google.com", { foo: "bar" });
   });
 
-  it("dispatches the addApiRequest action", async () => {
-    await HttpService.post("google.com", {});
-
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      payload: {},
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
-
   it("returns the result of the request", async () => {
-    const result = await HttpService.post("google.com", {});
-
-    expect(result).toEqual({ foo: "bar" });
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
   });
 
   it("catches rejected promise and returns the error", async () => {
@@ -113,24 +115,17 @@ describe("post", () => {
 });
 
 describe("delete", () => {
-  it("makes HTTP GET requests with provided arguments", () => {
-    HttpService.delete("google.com");
+  let response;
 
+  beforeEach(async () => {
+    response = await HttpService.delete("google.com");
+  });
+
+  it("makes HTTP GET requests with provided arguments", () => {
     expect(deleteSpy).toHaveBeenCalledWith("google.com");
   });
 
-  it("dispatches the addApiRequest action", async () => {
-    await HttpService.delete("google.com");
-
-    expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
-      path: "google.com",
-      response: { data: { foo: "bar" }, status: 200 },
-    });
-  });
-
   it("returns the result of the request", async () => {
-    const result = await HttpService.delete("google.com");
-
-    expect(result).toEqual({ foo: "bar" });
+    expect(response).toEqual({ data: { foo: "bar" }, status: 200 });
   });
 });

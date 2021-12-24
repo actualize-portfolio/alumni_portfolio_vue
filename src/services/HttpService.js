@@ -35,7 +35,11 @@ class HttpService {
   }
 
   handleSuccess(response) {
-    return response;
+    store.dispatch("addApiRequest", {
+      path: response.request.responseURL,
+      response,
+    });
+    return response.data;
   }
 
   handleError(error) {
@@ -58,24 +62,15 @@ class HttpService {
   }
 
   get(path) {
-    return this.service.get(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return response.data;
-    });
+    return this.service.get(path);
   }
 
   delete(path) {
-    return this.service.delete(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return response.data;
-    });
+    return this.service.delete(path);
   }
 
   post(path, payload) {
-    return this.service.post(path, payload).then((response) => {
-      store.dispatch("addApiRequest", { path, payload, response });
-      return response.data;
-    });
+    return this.service.post(path, payload);
   }
 }
 
