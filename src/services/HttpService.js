@@ -57,30 +57,25 @@ class HttpService {
     document.location = path;
   }
 
-  get(path, callback) {
+  get(path) {
     return this.service.get(path).then((response) => {
       store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
+      return response.data;
     });
   }
 
-  delete(path, callback) {
+  delete(path) {
     return this.service.delete(path).then((response) => {
       store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
+      return response.data;
     });
   }
 
-  post(path, payload, callback) {
-    return this.service
-      .post(path, payload)
-      .then((response) => {
-        store.dispatch("addApiRequest", { path, payload, response });
-        return callback(response.status, response.data);
-      })
-      .catch((error) => {
-        return error;
-      });
+  post(path, payload) {
+    return this.service.post(path, payload).then((response) => {
+      store.dispatch("addApiRequest", { path, payload, response });
+      return response.data;
+    });
   }
 }
 

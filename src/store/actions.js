@@ -15,14 +15,16 @@ const addApiRequest = ({ commit }, apiRequest) => {
 
 const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("startLoading");
-  HttpService.post(`login`, { username, password }, (status, response) => {
-    commit("stopLoading");
-
-    if (response.data.token) {
-      commit("setToken", response.data.token);
-      document.location = redirectTo;
-    }
-  });
+  HttpService.post(`login`, { username, password })
+    .then((response) => {
+      if (response.data.token) {
+        commit("setToken", response.data.token);
+        document.location = redirectTo;
+      }
+    })
+    .finally(() => {
+      commit("stopLoading");
+    });
 };
 
 export default {
