@@ -43,6 +43,7 @@ class HttpService {
   }
 
   handleError(error) {
+    store.dispatch("stopLoading");
     switch (error.response.status) {
       case 401:
         this.redirectTo("/login");
