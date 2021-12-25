@@ -7,10 +7,29 @@
       </h1>
       <div class="subheading mb-5">
         Actualize Coding Bootcamp
-        <a href="mailto:fixme">fixme</a>
+        <a href="https://anyonecanlearntocode.com/">Learn More</a>
       </div>
-      <h2 class="mb-5">Alumni Portfolio Project</h2>
-      <p class="lead mb-5">Fixme</p>
+      <h2 class="mb-2">Project Overview</h2>
+      <p class="lead mb-3">
+        This web application is a project aimed at giving newer developers a
+        learning experience about some of the processes and conventions they may
+        encounter at their first companies. It's meant to be somewhat
+        opinionated about style, testing, and developer workflow.
+      </p>
+      <p class="lead mb-3">
+        Engineers that contribute to this project are exposed to several key
+        concepts in preparation for onboarding wherever they may end up. They
+        will plan their work on epics/features/stories/bugs with a mock product
+        team, follow foundational Git practices, write quality code which must
+        pass peer review, provide tests for their contributions, and generally
+        treat the application as a first-class product.
+      </p>
+      <p class="lead mb-3">
+        As a benefit of their participation, developers will be able to
+        contribute portfolio pages featuring "code experience snippets" that
+        demonstrate their abilities and willingness to adhere to both a team
+        development strategy and the guidelines of a quality code base.
+      </p>
       <div class="flex-grow-1">
         <h3 class="mb-0">Front End</h3>
         <div class="subheading mb-3">
