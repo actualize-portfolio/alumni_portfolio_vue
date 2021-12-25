@@ -1,13 +1,5 @@
 <template>
-  <form
-    @submit.prevent="
-      $store.dispatch('login', {
-        username,
-        password,
-        redirectTo: this.$route.query.nextUrl,
-      })
-    "
-  >
+  <form @submit.prevent="login">
     <div class="mb-3">
       <label for="inputEmail" class="form-label">Email address</label>
       <input
@@ -35,6 +27,7 @@
       </div>
     </div>
     <SubmitButton
+      id="loginButton"
       fixed-text="Sign in"
       loading-text="Please wait..."
       :bootstrap-classes="['btn', 'btn-primary']"
@@ -45,8 +38,18 @@
 import SubmitButton from "@/components/SubmitButton.vue";
 
 export default {
+  name: "LoginPage",
   components: {
     SubmitButton,
+  },
+  methods: {
+    login() {
+      this.$store.dispatch("login", {
+        username: this.username,
+        password: this.password,
+        redirectTo: this.$route.query.nextUrl,
+      });
+    },
   },
   data() {
     return {
