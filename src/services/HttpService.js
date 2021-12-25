@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "@/store";
+import router from "@/router";
 
 axios.defaults.baseURL = process.env.VUE_APP_ALUMNI_PORTFOLIO_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
@@ -34,33 +35,27 @@ class HttpService {
     this.service = service;
   }
 
-  handleSuccess(response) {
+  handleSuccess({ data, request, status }) {
     store.dispatch("stopLoading");
     store.dispatch("addApiRequest", {
-      path: response.request.responseURL,
-      response,
+      path: request.responseURL,
+      data,
+      status,
     });
-    return response.data;
+    return data;
   }
 
   handleError(error) {
     store.dispatch("stopLoading");
     switch (error.response.status) {
       case 401:
-        this.redirectTo("/login");
-        break;
-      case 404:
-        this.redirectTo("/");
+        router.push({ name: "LoginPage" });
         break;
       default:
-        this.redirectTo("/");
+        router.push({ name: "LandingPage" });
         break;
     }
-    return Promise.reject(error);
-  }
-
-  redirectTo(path) {
-    document.location = path;
+    return Promise.reject(error.response);
   }
 
   get(path) {
