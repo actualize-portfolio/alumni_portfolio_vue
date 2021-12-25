@@ -1,10 +1,16 @@
 import { getSpy, postSpy, deleteSpy } from "axios";
 import HttpService from "@/services/HttpService";
 import store from "@/store";
+import { routerPushSpy } from "@/router";
 
-const storeSpy = jest.spyOn(store, "dispatch");
+jest.mock("@/router");
 
-beforeEach(() => jest.clearAllMocks());
+let storeSpy;
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  storeSpy = jest.spyOn(store, "dispatch");
+});
 
 describe("handleSuccess", () => {
   const response = {
@@ -23,12 +29,9 @@ describe("handleSuccess", () => {
     HttpService.handleSuccess(response);
 
     expect(storeSpy).toHaveBeenCalledWith("addApiRequest", {
+      data: { data: { foo: "bar" } },
       path: "https://google.com",
-      response: {
-        data: { data: { foo: "bar" } },
-        request: { responseURL: "https://google.com" },
-        status: 200,
-      },
+      status: 200,
     });
   });
 
@@ -40,24 +43,21 @@ describe("handleSuccess", () => {
 });
 
 describe("handleError", () => {
-  const redirectToSpy = jest.spyOn(HttpService, "redirectTo");
-  redirectToSpy.mockImplementation(() => {});
-
   describe("when 401", () => {
     const errorObj = { response: { status: 401 } };
 
     it("returns a rejected promise", () => {
       expect(
         HttpService.handleError(errorObj).catch((error) => {
-          expect(error).toEqual(errorObj);
+          expect(error).toEqual(errorObj.response);
         })
       );
     });
 
-    it("redirects to login page", () => {
-      HttpService.handleError(errorObj).catch(() => {});
-
-      expect(redirectToSpy).toHaveBeenCalledWith("/login");
+    it("redirects to LoginPage", () => {
+      HttpService.handleError(errorObj).catch(() => {
+        expect(routerPushSpy).toHaveBeenCalledWith({ name: "LoginPage" });
+      });
     });
   });
 
@@ -67,14 +67,15 @@ describe("handleError", () => {
     it("returns a rejected promise", () => {
       expect(
         HttpService.handleError(errorObj).catch((error) => {
-          expect(error).toEqual(errorObj);
+          expect(error).toEqual(errorObj.response);
         })
       );
     });
 
     it("redirects to root", () => {
-      HttpService.handleError(errorObj).catch(() => {});
-      expect(redirectToSpy).toHaveBeenCalledWith("/");
+      HttpService.handleError(errorObj).catch(() => {
+        expect(routerPushSpy).toHaveBeenCalledWith({ name: "LandingPage" });
+      });
     });
   });
 });
