@@ -12,13 +12,6 @@
         </th>
         <th
           scope="col"
-          @click="$emit('changeSortedBy', 'stargazers_count')"
-          class="text-end"
-        >
-          Stargazers
-        </th>
-        <th
-          scope="col"
           @click="$emit('changeSortedBy', 'watchers_count')"
           class="text-end"
         >
@@ -38,9 +31,6 @@
         <td>{{ repo.name }}</td>
         <td class="text-end">
           {{ $_textMixin_formatNumber(repo.forks_count) }}
-        </td>
-        <td class="text-end">
-          {{ $_textMixin_formatNumber(repo.stargazers_count) }}
         </td>
         <td class="text-end">
           {{ $_textMixin_formatNumber(repo.watchers_count) }}

@@ -48,12 +48,6 @@ export default {
                 data: this.repos.map((repo) => repo.watchers_count),
               },
               {
-                label: "Stargazers",
-                backgroundColor: "rgba(27, 73, 101, 0.3)",
-                borderColor: "rgba(27, 73, 101, 0.8)",
-                data: this.repos.map((repo) => repo.stargazers_count),
-              },
-              {
                 label: "Popularity",
                 backgroundColor: "rgba(118, 153, 212, 0.3)",
                 borderColor: "rgba(118, 153, 212, 0.8)",
