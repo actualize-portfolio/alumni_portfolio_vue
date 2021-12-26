@@ -26,7 +26,6 @@
         <option value="popularity_rating" selected>Popularity</option>
         <option value="forks_count">Forks</option>
         <option value="watchers_count">Watchers</option>
-        <option value="stargazers_count">Stargazers</option>
       </select>
     </div>
   </div>
