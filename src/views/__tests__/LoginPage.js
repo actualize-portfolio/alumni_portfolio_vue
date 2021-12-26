@@ -6,6 +6,7 @@ import store from "@/store";
 let wrapper;
 
 beforeEach(() => {
+  jest.clearAllMocks();
   wrapper = undefined;
   wrapper = mount(LoginPage, {
     global: {
@@ -38,6 +39,20 @@ describe("LoginPage Test", () => {
       username: "demo_user@test.com",
       password: "p@ssw@rd",
       redirectTo: "/repo_tracker",
+    });
+  });
+});
+
+describe("methods", () => {
+  describe("async login", () => {
+    it("prevens login if the form is invalid", async () => {
+      const storeSpy = jest.spyOn(store, "dispatch");
+      wrapper.vm.form.username = "";
+
+      await wrapper.vm.login();
+      await flushPromises();
+
+      expect(storeSpy).not.toHaveBeenCalled();
     });
   });
 });
