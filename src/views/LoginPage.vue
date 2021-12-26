@@ -26,13 +26,11 @@
         Passwords are stored encrypted.
       </div>
     </div>
-    <p v-for="error of v$.$errors" :key="error.$uid">
-      <strong>{{ error.$validator }}</strong>
-      <small> on property </small>
-      <strong>{{ error.$property }}</strong>
-      <small> says: </small>
-      <strong>{{ error.$message }}</strong>
-    </p>
+    <VuelidateError
+      :error="error"
+      v-for="error of v$.$errors"
+      :key="error.$uid"
+    />
     <SubmitButton
       id="loginButton"
       :disabled="v$.form.$invalid"
@@ -46,11 +44,13 @@
 import useVuelidate from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import SubmitButton from "@/components/SubmitButton.vue";
+import VuelidateError from "@/components/VuelidateError.vue";
 
 export default {
   name: "LoginPage",
   components: {
     SubmitButton,
+    VuelidateError,
   },
   setup() {
     return { v$: useVuelidate() };
