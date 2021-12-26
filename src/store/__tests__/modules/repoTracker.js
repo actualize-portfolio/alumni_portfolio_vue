@@ -2,9 +2,7 @@ import repoTracker from "@/store/modules/repoTracker";
 import httpService from "@/services/HttpService";
 import store from "@/store";
 
-jest.mock("@/services/HttpService.js", () => ({
-  get: jest.fn(),
-}));
+jest.mock("@/services/HttpService");
 
 beforeEach(() => jest.clearAllMocks());
 

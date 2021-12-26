@@ -1,11 +1,7 @@
 import actions from "@/store/actions";
 import httpService from "@/services/HttpService.js";
 
-jest.mock("@/services/HttpService.js", () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-  delete: jest.fn(),
-}));
+jest.mock("@/services/HttpService");
 
 beforeEach(() => jest.clearAllMocks());
 
