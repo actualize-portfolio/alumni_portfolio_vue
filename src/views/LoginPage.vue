@@ -3,7 +3,7 @@
     <div class="mb-3">
       <label for="inputEmail" class="form-label">Email address</label>
       <input
-        v-model="username"
+        v-model="v$.form.username.$model"
         type="email"
         class="form-control"
         id="inputEmail"
@@ -16,7 +16,7 @@
     <div class="mb-3">
       <label for="inputPassword" class="form-label">Password</label>
       <input
-        v-model="password"
+        v-model="v$.form.password.$model"
         type="password"
         class="form-control"
         id="inputPassword"
@@ -26,8 +26,16 @@
         Passwords are stored encrypted.
       </div>
     </div>
+    <p v-for="error of v$.$errors" :key="error.$uid">
+      <strong>{{ error.$validator }}</strong>
+      <small> on property </small>
+      <strong>{{ error.$property }}</strong>
+      <small> says: </small>
+      <strong>{{ error.$message }}</strong>
+    </p>
     <SubmitButton
       id="loginButton"
+      :disabled="v$.form.$invalid"
       fixed-text="Sign in"
       loading-text="Please wait..."
       :bootstrap-classes="['btn', 'btn-primary']"
@@ -35,6 +43,8 @@
   </form>
 </template>
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
 import SubmitButton from "@/components/SubmitButton.vue";
 
 export default {
@@ -42,19 +52,42 @@ export default {
   components: {
     SubmitButton,
   },
+  setup() {
+    return { v$: useVuelidate() };
+  },
   methods: {
-    login() {
-      this.$store.dispatch("login", {
-        username: this.username,
-        password: this.password,
-        redirectTo: this.$route.query.nextUrl,
-      });
+    async login() {
+      const isFormCorrect = await this.v$.$validate();
+
+      if (isFormCorrect) {
+        this.$store.dispatch("login", {
+          username: this.form.username,
+          password: this.form.password,
+          redirectTo: this.$route.query.nextUrl,
+        });
+      }
     },
   },
   data() {
     return {
-      username: "demo_user@test.com",
-      password: "p@ssw@rd",
+      form: {
+        username: "demo_user@test.com",
+        password: "p@ssw@rd",
+      },
+    };
+  },
+  validations() {
+    return {
+      form: {
+        username: {
+          required,
+          email,
+        },
+        password: {
+          required,
+          min: minLength(6),
+        },
+      },
     };
   },
 };

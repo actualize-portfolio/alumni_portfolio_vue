@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+import flushPromises from "flush-promises";
 import LoginPage from "@/views/LoginPage.vue";
 import store from "@/store";
 
@@ -22,14 +23,16 @@ beforeEach(() => {
 
 describe("LoginPage Test", () => {
   it("renders with demo username and password filled in", () => {
-    expect(wrapper.vm.username).toEqual("demo_user@test.com");
-    expect(wrapper.vm.password).toEqual("p@ssw@rd");
+    expect(wrapper.vm.form.username).toEqual("demo_user@test.com");
+    expect(wrapper.vm.form.password).toEqual("p@ssw@rd");
   });
 
   it("logs in with the provided username and password", async () => {
     const storeSpy = jest.spyOn(store, "dispatch");
 
-    await wrapper.find("#loginButton").trigger("submit.prevent");
+    wrapper.find("#loginButton").trigger("submit.prevent");
+
+    await flushPromises();
 
     expect(storeSpy).toHaveBeenCalledWith("login", {
       username: "demo_user@test.com",
