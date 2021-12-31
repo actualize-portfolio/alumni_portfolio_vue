@@ -20,7 +20,7 @@ describe("LoadingSpinner.vue", () => {
   it("displays spinner and screen reader text when loading is true", async () => {
     await store.commit("startLoading");
 
-    expect(wrapper.html()).toContain('<div class="spinner-grow mt-3">');
+    expect(wrapper.html()).toContain('<div class="spinner-grow mt-3"');
     expect(wrapper.html()).toContain('<span class="sr-only">Loading...');
   });
 });
