@@ -26,6 +26,11 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <router-link to="/service_web" class="nav-link"
+            >Service Web</router-link
+          >
+        </li>
+        <li class="nav-item">
           <router-link to="/repo_tracker" class="nav-link"
             >Github Tracker</router-link
           >

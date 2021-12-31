@@ -6,6 +6,8 @@ const LandingPage = () =>
   import(/* webpackChunkName: "landingPage" */ "@/views/LandingPage.vue");
 const FavoriteBooks = () =>
   import(/* webpackChunkName: "favoriteBooks" */ "@/views/FavoriteBooks.vue");
+const ServiceWeb = () =>
+  import(/* webpackChunkName: "serviceWeb" */ "@/views/ServiceWeb.vue");
 const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
@@ -21,6 +23,12 @@ const routes = [
     path: "/login",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/service_web",
+    name: "ServiceWeb",
+    component: ServiceWeb,
+    meta: { requiresAuth: false },
   },
   {
     path: "/books",
