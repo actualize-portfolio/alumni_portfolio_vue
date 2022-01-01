@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "The Splurge",
+      "author": "Hank Hankerson",
+      "page_count": 342,
+      "img_url": "https://edit.org/photos/img/blog/m68-book-cover-templates.jpg-840.jpg",
+      "is_favorite": false
+    },
+    {
+      "id": 2,
+      "title": "Monsters of Fruit",
+      "author": "Cheryl Moose",
+      "page_count": 1322,
+      "img_url": "https://edit.org/photos/img/blog/m68-book-cover-templates.jpg-840.jpg",
+      "is_favorite": false
+    }
+  ],
+  "errors": []
+}

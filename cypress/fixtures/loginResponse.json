@@ -1,0 +1,10 @@
+{
+  "data": {
+    "user": {
+      "username": "demo_user@test.com",
+      "age": 30
+    },
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDEwMDg4NzJ9.LijQcAeU03oOywC70h8ZLXvrFt9QxNUEmUn6YIBDKG8"
+  },
+  "errors": []
+}
