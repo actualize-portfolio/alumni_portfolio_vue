@@ -4,7 +4,7 @@
       "username": "demo_user@test.com",
       "age": 30
     },
-    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDEwMDg4NzJ9.LijQcAeU03oOywC70h8ZLXvrFt9QxNUEmUn6YIBDKG8"
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjQ3OTY3MzgxMTV9.q7xZQVvx_8hDtrnA87IHecLD1_9C9e7VgEv2TmBECS8"
   },
   "errors": []
 }

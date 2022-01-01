@@ -1,5 +1,6 @@
 describe("favoriteBooks", () => {
   it("can navigate to favoriteBooks and back", () => {
+    cy.clearLocalStorage();
     cy.visit("/");
 
     cy.get(".nav-link").contains("Favorite Books").click();

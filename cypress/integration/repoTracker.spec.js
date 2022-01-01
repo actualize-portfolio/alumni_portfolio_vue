@@ -1,5 +1,6 @@
 describe("repoTracker", () => {
   it("can navigate to repoTracker and back", () => {
+    cy.clearLocalStorage();
     cy.visit("/");
 
     cy.intercept("GET", "/api/v1/repos", { fixture: "getRepos" }).as(
