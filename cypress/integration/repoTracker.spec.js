@@ -3,10 +3,12 @@ describe("repoTracker", () => {
     cy.clearLocalStorage();
     cy.visit("/");
 
-    cy.intercept("GET", "/api/v1/repos", { fixture: "getRepos" }).as(
+    cy.intercept("GET", "/api/v1/github_repos", { fixture: "getRepos" }).as(
       "getRepos"
     );
     cy.get(".nav-link").contains("Github Tracker").click();
+
+    cy.wait("@getRepos");
 
     cy.get("select").first().select("Javascript Framework");
     cy.get("select").first().select("Fullstack Framework");

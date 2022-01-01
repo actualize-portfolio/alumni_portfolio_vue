@@ -13,6 +13,9 @@ describe("favoriteBooks", () => {
     );
     cy.get("#loginButton").click();
 
+    cy.wait("@login");
+    cy.wait("@getBooks");
+
     cy.get("h1").contains("Favorite Books");
 
     cy.get(".img-profile").click();
