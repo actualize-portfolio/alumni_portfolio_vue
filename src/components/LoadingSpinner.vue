@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading" class="text-center">
+  <div v-if="active" class="text-center">
     <div class="spinner-grow mt-3" role="status"></div>
     <span class="sr-only">Loading...</span>
   </div>
@@ -7,9 +7,10 @@
 <script>
 export default {
   name: "LoadingSpinner",
-  computed: {
-    loading() {
-      return this.$store.state.loading;
+  props: {
+    active: {
+      type: Boolean,
+      required: true,
     },
   },
 };

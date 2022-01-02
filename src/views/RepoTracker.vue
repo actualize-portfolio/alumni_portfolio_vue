@@ -4,7 +4,7 @@
     description="Displays popularity data for a set of Github Repositories"
     :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
   />
-  <div class="row" v-if="!$store.state.loading">
+  <div class="row" v-if="!loading">
     <div class="col-sm-6">
       <select
         v-model="category"
@@ -29,7 +29,7 @@
       </select>
     </div>
   </div>
-  <LoadingSpinner />
+  <LoadingSpinner :active="loading" />
   <RepoTrackerChart
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"
@@ -97,6 +97,9 @@ export default {
     },
   },
   computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
     filteredAndOrderedRepos() {
       return this.sortedRepos(
         this.filteredRepos(this.$store.state.repoTracker.repos)
