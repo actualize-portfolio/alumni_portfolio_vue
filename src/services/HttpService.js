@@ -58,8 +58,8 @@ class HttpService {
     return Promise.reject(error.response);
   }
 
-  get(path) {
-    return this.service.get(path);
+  get(path, query = {}) {
+    return this.service.get(path, { params: query });
   }
 
   delete(path) {

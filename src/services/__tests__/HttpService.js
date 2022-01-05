@@ -84,11 +84,11 @@ describe("get", () => {
   let response;
 
   beforeEach(async () => {
-    response = await HttpService.get("google.com");
+    response = await HttpService.get("google.com", { page: 1 });
   });
 
   it("makes HTTP GET requests with provided arguments", () => {
-    expect(getSpy).toHaveBeenCalledWith("google.com");
+    expect(getSpy).toHaveBeenCalledWith("google.com", { params: { page: 1 } });
   });
 
   it("returns the result of the request", () => {
