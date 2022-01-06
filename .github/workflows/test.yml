@@ -19,6 +19,8 @@ jobs:
       - run: yarn lint
       - run: yarn audit --groups dependencies
       - run: yarn test:unit --coverage
+      - run: yarn test:e2e
+      - run: yarn test:all
   cypress-run:
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +35,4 @@ jobs:
           start: yarn serve
           record: false
           browser: chrome
-          wait-on: 'http://localhost:8080'
+          wait-on: "http://localhost:8080"
