@@ -34,8 +34,16 @@ yarn serve
 ### Run tests
 
 ```
-yarn test:e2e
 yarn test:unit
+```
+
+```
+yarn test:e2e
+```
+
+### Run unit tests and end-to-end tests concurrently
+
+```
 yarn test:all
 ```
 
