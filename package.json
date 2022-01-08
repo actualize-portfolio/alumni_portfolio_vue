@@ -9,8 +9,7 @@
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit --coverage",
     "test:e2e": "cypress run",
-    "test:all": "cypress run",
-    "pretest:all": "vue-cli-service test:unit --coverage",
+    "test:all": "vue-cli-service test:unit --coverage && cypress run",
     "cypress": "cypress open"
   },
   "dependencies": {
