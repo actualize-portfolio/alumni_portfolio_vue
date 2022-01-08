@@ -37,11 +37,13 @@ yarn serve
 yarn test:unit
 ```
 
+### Run to test the application's workflow from beginning to end ensuring its flow works as expected.
+
 ```
 yarn test:e2e
 ```
 
-### Run unit tests and end-to-end tests concurrently
+### Run unit tests first and immediately after end-to-end tests
 
 ```
 yarn test:all
