@@ -19,7 +19,7 @@ const addApiRequest = ({ commit }, apiRequest) => {
 
 const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("startLoading");
-  HttpService.post(`login`, { username, password }).then((response) => {
+  HttpService.post("login", { username, password }).then((response) => {
     if (response.data.token) {
       commit("setToken", response.data.token);
       document.location = redirectTo;
@@ -27,10 +27,26 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   });
 };
 
+const createUser = (
+  { commit },
+  { username, password, age, redirectTo = "/" }
+) => {
+  commit("startLoading");
+  HttpService.post("users", { user: { username, password, age } }).then(
+    (response) => {
+      if (response.data.token) {
+        commit("setToken", response.data.token);
+        document.location = redirectTo;
+      }
+    }
+  );
+};
+
 export default {
   initialize,
   stopLoading,
   login,
+  createUser,
   toggleTheApiVisualizer,
   addApiRequest,
 };
