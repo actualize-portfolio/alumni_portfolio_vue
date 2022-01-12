@@ -11,7 +11,7 @@ const RepoTracker = () =>
 const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
 const NewUser = () =>
-  import(/* webpackChunkName: "loginPage" */ "@/views/NewUser.vue");
+  import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
 
 const routes = [
   {

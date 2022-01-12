@@ -89,6 +89,7 @@ describe("actions", () => {
       formData.append("username", "test");
       formData.append("password", "passwor");
     });
+
     describe("when user is created", () => {
       beforeEach(async () => {
         httpService.post.mockImplementation(() =>
