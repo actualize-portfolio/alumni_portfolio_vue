@@ -34,12 +34,13 @@
       />
     </div>
     <div class="mb-3">
-      <label for="inputAge" class="form-label">Age</label>
+      <label for="inputAvatar" class="form-label">Avatar</label>
       <input
-        v-model="v$.form.age.$model"
-        type="number"
+        @change="handleImage"
+        type="file"
         class="form-control"
-        id="inputAge"
+        id="inputAvatar"
+        accept="image/gif, image/jpeg, image/png"
       />
     </div>
     <VuelidateError
@@ -54,6 +55,14 @@
       loading-text="Please wait..."
       :bootstrap-classes="['btn', 'btn-primary']"
     />
+    <div>
+      <img
+        v-if="previewUrl"
+        :src="previewUrl"
+        class="rounded img-fluid img-max"
+        alt="avater preview"
+      />
+    </div>
   </form>
 </template>
 <script>
@@ -69,11 +78,13 @@ export default {
   },
   data() {
     return {
+      previewUrl: "",
       form: {
+        avatar: "",
         username: "",
         password: "",
         passwordConfirmation: "",
-        age: "",
+        age: "0", // Age is hard coded because back end currently requires it.
       },
     };
   },
@@ -82,11 +93,26 @@ export default {
     VuelidateError,
   },
   methods: {
+    handleImage(e) {
+      const [file] = e.target.files;
+
+      this.form.avatar = file;
+      this.previewUrl = URL.createObjectURL(file);
+    },
     async createUser() {
       const isFormCorrect = await this.v$.$validate();
 
       if (isFormCorrect) {
-        this.$store.dispatch("createUser", this.form);
+        const formData = new FormData();
+
+        if (this.form.avatar) {
+          formData.append("avatar", this.form.avatar, this.form.username);
+        }
+        formData.append("username", this.form.username);
+        formData.append("password", this.form.password);
+        formData.append("age", this.form.age);
+
+        this.$store.dispatch("createUser", formData);
       }
     },
   },
@@ -113,4 +139,11 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.img-max {
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
+  margin-top: 5px;
+}
+</style>

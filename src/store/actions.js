@@ -27,19 +27,14 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   });
 };
 
-const createUser = (
-  { commit },
-  { username, password, age, redirectTo = "/" }
-) => {
+const createUser = ({ commit }, formData) => {
   commit("startLoading");
-  HttpService.post("users", { user: { username, password, age } }).then(
-    (response) => {
-      if (response.data.token) {
-        commit("setToken", response.data.token);
-        document.location = redirectTo;
-      }
+  HttpService.post("users", formData).then((response) => {
+    if (response.data.token) {
+      commit("setToken", response.data.token);
+      document.location = "/";
     }
-  );
+  });
 };
 
 export default {
