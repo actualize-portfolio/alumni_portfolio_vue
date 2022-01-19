@@ -7,7 +7,7 @@
       </h1>
       <div class="subheading mb-3">
         Actualize Coding Bootcamp
-        <a href="https://anyonecanlearntocode.com/">Learn More</a>
+        <a target="_blank" href="https://anyonecanlearntocode.com/">Learn More</a>
       </div>
       <h2 class="mb-2">Project Overview</h2>
       <p class="lead mb-3">
@@ -43,7 +43,7 @@
       <div class="flex-grow-1">
         <h3 class="mb-0">Front End</h3>
         <div class="subheading mb-3">
-          <a
+          <a target="_blank"
             class="social-icon"
             href="https://v3.vuejs.org/guide/introduction.html"
             >Vue.js<i class="fab fa-vuejs"></i
@@ -63,7 +63,7 @@
       </div>
       <div class="flex-shrink-0">
         <span class="text-primary"
-          ><a href="https://github.com/actualize-portfolio/alumni_portfolio_vue"
+          ><a target="_blank" href="https://github.com/actualize-portfolio/alumni_portfolio_vue"
             >See project on Github</a
           ></span
         >
@@ -74,7 +74,7 @@
       <div class="flex-grow-1">
         <h3 class="mb-0">Back End</h3>
         <div class="subheading mb-3">
-          <a href="https://rubyonrails.org/">Ruby on Rails</a>
+          <a target="_blank" href="https://rubyonrails.org/">Ruby on Rails</a>
         </div>
         <p class="lead mb-3">
           The server side is Rails version 6 running in API mode with a Postgres
@@ -88,7 +88,7 @@
       </div>
       <div class="flex-shrink-0">
         <span class="text-primary"
-          ><a href="https://github.com/actualize-portfolio/alumni_portfolio_api"
+          ><a target="_blank" href="https://github.com/actualize-portfolio/alumni_portfolio_api"
             >See project on Github</a
           ></span
         >
