@@ -10,6 +10,8 @@ const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
+const NewUser = () =>
+  import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
 
 const routes = [
   {
@@ -21,6 +23,11 @@ const routes = [
     path: "/login",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/users/new",
+    name: "NewUser",
+    component: NewUser,
   },
   {
     path: "/books",
