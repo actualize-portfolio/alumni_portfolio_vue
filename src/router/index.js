@@ -6,6 +6,8 @@ const LandingPage = () =>
   import(/* webpackChunkName: "landingPage" */ "@/views/LandingPage.vue");
 const FavoriteBooks = () =>
   import(/* webpackChunkName: "favoriteBooks" */ "@/views/FavoriteBooks.vue");
+const SunnySorter = () =>
+  import(/* webpackChunkName: "sunnySorter" */ "@/views/SunnySorter.vue");
 const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
@@ -33,6 +35,12 @@ const routes = [
     path: "/books",
     name: "FavoriteBooks",
     component: FavoriteBooks,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/sunny_sorter",
+    name: "SunnySorter",
+    component: SunnySorter,
     meta: { requiresAuth: true },
   },
   {
