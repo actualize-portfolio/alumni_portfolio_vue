@@ -31,6 +31,11 @@
           >
         </li>
         <li class="nav-item">
+          <router-link to="/sunny_sorter" class="nav-link"
+            >Sunny Sorter</router-link
+          >
+        </li>
+        <li class="nav-item">
           <router-link to="/books" class="nav-link">Favorite Books</router-link>
         </li>
       </ul>

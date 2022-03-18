@@ -44,9 +44,11 @@
     "@vue/test-utils": "^2.0.0-0",
     "cypress": "^9.1.0",
     "eslint": "^6.7.2",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^7.0.0",
     "flush-promises": "^1.0.2",
+    "prettier": "^2.5.1",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   },
@@ -56,6 +58,7 @@
       "node": true
     },
     "extends": [
+      "prettier",
       "plugin:vue/vue3-essential",
       "eslint:recommended",
       "plugin:cypress/recommended"
