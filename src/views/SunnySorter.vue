@@ -47,16 +47,15 @@ export default {
     getTopTenEpisodes() {
       this.$store.dispatch("getTopTenEpisodes");
     },
-    vote(id) {
+    async vote(id) {
       const betterEpisodeId = id;
       const worseEpisode = this.$store.state.sunnySorter.episodes.filter(
         (episode) => episode.id != id
       );
-      this.$store.dispatch("vote", {
+      await this.$store.dispatch("vote", {
         better_id: betterEpisodeId,
         worse_id: worseEpisode[0].id,
       });
-      this.getSunnyEpisodes();
     },
   },
   created() {

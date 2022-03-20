@@ -38,6 +38,7 @@
       loading-text="Please wait..."
       :bootstrap-classes="['btn', 'btn-primary']"
     />
+    <router-link to="/users/new">Sign Up</router-link>
   </form>
 </template>
 <script>
@@ -71,8 +72,8 @@ export default {
   data() {
     return {
       form: {
-        username: "demo_user@test.com",
-        password: "p@ssw@rd",
+        username: "",
+        password: "",
       },
     };
   },
