@@ -56,7 +56,6 @@ export default {
         better_id: betterEpisodeId,
         worse_id: worseEpisode[0].id,
       });
-      this.getSunnyEpisodes();
     },
   },
   created() {
