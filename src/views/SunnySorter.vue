@@ -24,9 +24,20 @@
     </div>
   </div>
   <div>
-    <h3>Current Rankings</h3>
+    <h3>Public Rankings</h3>
     <ol>
       <li v-for="episode in $store.state.sunnySorter.topTen" :key="episode.id">
+        {{ episode.title }}
+      </li>
+    </ol>
+  </div>
+  <div>
+    <h3>Your Rankings</h3>
+    <ol>
+      <li
+        v-for="episode in $store.state.sunnySorter.userTopTen"
+        :key="episode.id"
+      >
         {{ episode.title }}
       </li>
     </ol>
