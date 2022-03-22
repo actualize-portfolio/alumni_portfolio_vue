@@ -5,6 +5,7 @@ const repoTracker = {
     return {
       episodes: [],
       topTen: [],
+      userTopTen: [],
     };
   },
   mutations: {
@@ -13,6 +14,9 @@ const repoTracker = {
     },
     setTopTenEpisodes(state, episodes) {
       state.topTen = episodes;
+    },
+    setUserTopTenEpisodes(state, episodes) {
+      state.userTopTen = episodes;
     },
   },
   actions: {
@@ -26,7 +30,8 @@ const repoTracker = {
     },
     getTopTenEpisodes({ commit }) {
       HttpService.get("sunny_episodes").then((response) => {
-        commit("setTopTenEpisodes", response.data);
+        commit("setTopTenEpisodes", response.data.top_ten);
+        commit("setUserTopTenEpisodes", response.data.top_ten_by_user);
       });
     },
     vote({ commit }, { better_id, worse_id }) {
