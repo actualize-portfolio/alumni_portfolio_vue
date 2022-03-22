@@ -20,12 +20,12 @@ const repoTracker = {
       commit("setEpisodes", []);
     },
     getSunnyEpisodes({ commit }) {
-      HttpService.get("sunny_episodes").then((response) => {
+      HttpService.get("sunny_episode_user_rankings").then((response) => {
         commit("setEpisodes", response.data);
       });
     },
     getTopTenEpisodes({ commit }) {
-      HttpService.get("sunny_episode_user_rankings").then((response) => {
+      HttpService.get("sunny_episodes").then((response) => {
         commit("setTopTenEpisodes", response.data);
       });
     },
