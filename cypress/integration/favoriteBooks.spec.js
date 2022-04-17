@@ -11,6 +11,8 @@ describe("favoriteBooks", () => {
     cy.intercept("GET", "/api/v1/books?page=1", { fixture: "getBooks" }).as(
       "getBooks"
     );
+    cy.get("#inputEmail").type("demo_user@test.com");
+    cy.get("#inputPassword").type("p@ssw@rd");
     cy.get("#loginButton").click();
 
     cy.wait("@login");
