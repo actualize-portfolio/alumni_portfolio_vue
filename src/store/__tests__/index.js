@@ -7,6 +7,11 @@ describe("store", () => {
         jwt: null,
         storeReady: false,
         loading: false,
+        sunnySorter: {
+          episodes: [],
+          topTen: [],
+          userTopTen: [],
+        },
         favoriteBooks: {
           books: [],
         },

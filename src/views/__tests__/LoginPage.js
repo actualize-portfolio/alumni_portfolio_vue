@@ -2,6 +2,7 @@ import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
 import LoginPage from "@/views/LoginPage.vue";
 import store from "@/store";
+import router from "@/router";
 
 let wrapper;
 
@@ -10,7 +11,7 @@ beforeEach(() => {
   wrapper = undefined;
   wrapper = mount(LoginPage, {
     global: {
-      plugins: [store],
+      plugins: [store, router],
       mocks: {
         $route: {
           query: {
@@ -23,14 +24,15 @@ beforeEach(() => {
 });
 
 describe("LoginPage Test", () => {
-  it("renders with demo username and password filled in", () => {
-    expect(wrapper.vm.form.username).toEqual("demo_user@test.com");
-    expect(wrapper.vm.form.password).toEqual("p@ssw@rd");
+  it("renders with demo username and password blank", () => {
+    expect(wrapper.vm.form.username).toEqual("");
+    expect(wrapper.vm.form.password).toEqual("");
   });
 
   it("logs in with the provided username and password", async () => {
     const storeSpy = jest.spyOn(store, "dispatch");
-
+    await wrapper.find("#inputEmail").setValue("demo_user@test.com");
+    await wrapper.find("#inputPassword").setValue("p@ssw@rd");
     wrapper.find("#loginButton").trigger("submit.prevent");
 
     await flushPromises();
