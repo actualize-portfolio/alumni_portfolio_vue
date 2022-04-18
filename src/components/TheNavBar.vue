@@ -9,7 +9,7 @@
       <span class="d-none d-lg-block"
         ><img
           class="img-fluid img-profile rounded-circle mx-auto mb-2"
-          src=""
+          src="@/assets/img/actualize_logo.jpeg"
           alt="" /></span
     ></router-link>
     <button
@@ -28,6 +28,11 @@
         <li class="nav-item">
           <router-link to="/repo_tracker" class="nav-link"
             >Github Tracker</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link to="/sunny_sorter" class="nav-link"
+            >Sunny Sorter</router-link
           >
         </li>
         <li class="nav-item">

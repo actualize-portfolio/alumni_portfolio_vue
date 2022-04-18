@@ -4,7 +4,7 @@
     description="Displays popularity data for a set of Github Repositories"
     :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
   />
-  <div class="row">
+  <div class="row" v-if="!loading">
     <div class="col-sm-6">
       <select
         v-model="category"
@@ -26,10 +26,10 @@
         <option value="popularity_rating" selected>Popularity</option>
         <option value="forks_count">Forks</option>
         <option value="watchers_count">Watchers</option>
-        <option value="stargazers_count">Stargazers</option>
       </select>
     </div>
   </div>
+  <LoadingSpinner :active="loading" />
   <RepoTrackerChart
     v-if="filteredAndOrderedRepos.length"
     :repos="filteredAndOrderedRepos"
@@ -43,6 +43,7 @@
 </template>
 <script>
 import ProjectInfo from "@/components/ProjectInfo.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import RepoTrackerChart from "@/components/RepoTrackerChart.vue";
 import RepoTrackerTable from "@/components/RepoTrackerTable.vue";
 import textMixin from "@/mixins/textMixin.js";
@@ -96,6 +97,9 @@ export default {
     },
   },
   computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
     filteredAndOrderedRepos() {
       return this.sortedRepos(
         this.filteredRepos(this.$store.state.repoTracker.repos)
@@ -103,6 +107,7 @@ export default {
     },
   },
   components: {
+    LoadingSpinner,
     ProjectInfo,
     RepoTrackerChart,
     RepoTrackerTable,

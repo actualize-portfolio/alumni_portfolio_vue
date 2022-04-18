@@ -30,21 +30,26 @@ const favoriteBooks = {
     },
   },
   actions: {
-    loadBooks({ commit }) {
+    loadBooks({ commit }, { page }) {
       commit("startLoading");
-      return HttpService.get("books", (status, response) => {
-        commit("setBooks", response.data);
-        commit("stopLoading");
-      });
+      HttpService.get("books", { page })
+        .then((response) => {
+          commit("setBooks", response.data);
+        })
+        .finally(() => {
+          commit("stopLoading");
+        });
     },
     removeFavoriteBook({ commit }, book) {
-      HttpService.delete(`/user_books/${book.id}`, () => {
-        commit("destroyFavoriteBook", book);
+      commit("destroyFavoriteBook", book);
+      HttpService.delete(`/user_books/${book.id}`).catch(() => {
+        commit("createFavoriteBook", book);
       });
     },
     setFavoriteBook({ commit }, book) {
-      HttpService.post("/user_books", { book_id: book.id }, () => {
-        commit("createFavoriteBook", book);
+      commit("createFavoriteBook", book);
+      HttpService.post("/user_books", { book_id: book.id }).catch(() => {
+        commit("destroyFavoriteBook", book);
       });
     },
   },

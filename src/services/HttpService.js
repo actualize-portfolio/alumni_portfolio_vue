@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "@/store";
+import router from "@/router";
 
 axios.defaults.baseURL = process.env.VUE_APP_ALUMNI_PORTFOLIO_API_ENDPOINT;
 axios.defaults.timeout = process.env.VUE_APP_AXIOS_TIMEOUT;
@@ -18,6 +19,7 @@ class HttpService {
 
     service.interceptors.response.use(this.handleSuccess, this.handleError);
 
+    /* istanbul ignore next */
     if (process.env.NODE_ENV === "development") {
       service.interceptors.request.use((request) => {
         console.log("Starting Request", JSON.stringify(request, null, 2));
@@ -33,49 +35,39 @@ class HttpService {
     this.service = service;
   }
 
-  handleSuccess(response) {
-    return response;
+  handleSuccess({ data, request, status }) {
+    store.dispatch("stopLoading");
+    store.dispatch("addApiRequest", {
+      path: request.responseURL,
+      data,
+      status,
+    });
+    return data;
   }
 
-  handleError = (error) => {
-    console.log(error);
+  handleError(error) {
+    store.dispatch("stopLoading");
     switch (error.response.status) {
       case 401:
-        this.redirectTo(document, "/login");
-        break;
-      case 404:
-        this.redirectTo(document, "/");
+        router.push({ name: "LoginPage" });
         break;
       default:
-        this.redirectTo(document, "/");
+        router.push({ name: "LandingPage" });
         break;
     }
-    return Promise.reject(error);
-  };
-
-  redirectTo = (document, path) => {
-    document.location = path;
-  };
-
-  get(path, callback) {
-    return this.service.get(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
-    });
+    return Promise.reject(error.response);
   }
 
-  delete(path, callback) {
-    return this.service.delete(path).then((response) => {
-      store.dispatch("addApiRequest", { path, response });
-      return callback(response.status, response.data);
-    });
+  get(path, query = {}) {
+    return this.service.get(path, { params: query });
   }
 
-  post(path, payload, callback) {
-    return this.service.post(path, payload).then((response) => {
-      store.dispatch("addApiRequest", { path, payload, response });
-      return callback(response.status, response.data);
-    });
+  delete(path) {
+    return this.service.delete(path);
+  }
+
+  post(path, payload) {
+    return this.service.post(path, payload);
   }
 }
 

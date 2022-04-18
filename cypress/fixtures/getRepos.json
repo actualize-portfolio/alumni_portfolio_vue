@@ -1,0 +1,140 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "vue",
+      "full_name": "vuejs/vue",
+      "category": "javascript_framework",
+      "forks_count": 31051,
+      "watchers_count": 191808,
+      "popularity_rating": 124125
+    },
+    {
+      "id": 2,
+      "name": "react",
+      "full_name": "facebook/react",
+      "category": "javascript_framework",
+      "forks_count": 36552,
+      "watchers_count": 179967,
+      "popularity_rating": 120913
+    },
+    {
+      "id": 3,
+      "name": "angular.js",
+      "full_name": "angular/angular.js",
+      "category": "javascript_framework",
+      "forks_count": 28409,
+      "watchers_count": 59578,
+      "popularity_rating": 49813
+    },
+    {
+      "id": 4,
+      "name": "svelte",
+      "full_name": "sveltejs/svelte",
+      "category": "javascript_framework",
+      "forks_count": 2615,
+      "watchers_count": 54318,
+      "popularity_rating": 31444
+    },
+    {
+      "id": 5,
+      "name": "ember.js",
+      "full_name": "emberjs/ember.js",
+      "category": "javascript_framework",
+      "forks_count": 4257,
+      "watchers_count": 22103,
+      "popularity_rating": 14711
+    },
+    {
+      "id": 6,
+      "name": "rails",
+      "full_name": "rails/rails",
+      "category": "fullstack_framework",
+      "forks_count": 19986,
+      "watchers_count": 49812,
+      "popularity_rating": 39388
+    },
+    {
+      "id": 7,
+      "name": "phoenix",
+      "full_name": "phoenixframework/phoenix",
+      "category": "fullstack_framework",
+      "forks_count": 2347,
+      "watchers_count": 17508,
+      "popularity_rating": 11038
+    },
+    {
+      "id": 8,
+      "name": "django",
+      "full_name": "django/django",
+      "category": "fullstack_framework",
+      "forks_count": 26263,
+      "watchers_count": 61517,
+      "popularity_rating": 49592
+    },
+    {
+      "id": 9,
+      "name": "nuxt.js",
+      "full_name": "nuxt/nuxt.js",
+      "category": "fullstack_framework",
+      "forks_count": 3167,
+      "watchers_count": 39081,
+      "popularity_rating": 23395
+    },
+    {
+      "id": 10,
+      "name": "ruby",
+      "full_name": "ruby/ruby",
+      "category": "language",
+      "forks_count": 5588,
+      "watchers_count": 18757,
+      "popularity_rating": 13669
+    },
+    {
+      "id": 11,
+      "name": "cpython",
+      "full_name": "python/cpython",
+      "category": "language",
+      "forks_count": 21327,
+      "watchers_count": 42030,
+      "popularity_rating": 35913
+    },
+    {
+      "id": 12,
+      "name": "rust",
+      "full_name": "rust-lang/rust",
+      "category": "language",
+      "forks_count": 8663,
+      "watchers_count": 61914,
+      "popularity_rating": 39251
+    },
+    {
+      "id": 13,
+      "name": "elixir",
+      "full_name": "elixir-lang/elixir",
+      "category": "language",
+      "forks_count": 2808,
+      "watchers_count": 19631,
+      "popularity_rating": 12482
+    },
+    {
+      "id": 14,
+      "name": "scala",
+      "full_name": "scala/scala",
+      "category": "language",
+      "forks_count": 3092,
+      "watchers_count": 13578,
+      "popularity_rating": 9323
+    },
+    {
+      "id": 15,
+      "name": "go-github",
+      "full_name": "google/go-github",
+      "category": "language",
+      "forks_count": 1663,
+      "watchers_count": 8013,
+      "popularity_rating": 5405
+    }
+  ],
+  "errors": []
+}

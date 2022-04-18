@@ -6,12 +6,16 @@ const LandingPage = () =>
   import(/* webpackChunkName: "landingPage" */ "@/views/LandingPage.vue");
 const FavoriteBooks = () =>
   import(/* webpackChunkName: "favoriteBooks" */ "@/views/FavoriteBooks.vue");
+const SunnySorter = () =>
+  import(/* webpackChunkName: "sunnySorter" */ "@/views/SunnySorter.vue");
 const RepoTracker = () =>
   import(/* webpackChunkName: "repoTracker" */ "@/views/RepoTracker.vue");
 const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
 const PinnysProject = () =>
-  import(/* webpackChunkName: "loginPage" */ "@/views/PinnysProject.vue");
+  import(/* webpackChunkName: "pinnysProject" */ "@/views/PinnysProject.vue");
+const NewUser = () =>
+  import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
 
 const routes = [
   {
@@ -25,20 +29,27 @@ const routes = [
     component: LoginPage,
   },
   {
+    path: "/users/new",
+    name: "NewUser",
+    component: NewUser,
+  },
+  {
     path: "/books",
     name: "FavoriteBooks",
     component: FavoriteBooks,
-    meta: {
-      requiresAuth: true,
-    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/sunny_sorter",
+    name: "SunnySorter",
+    component: SunnySorter,
+    meta: { requiresAuth: true },
   },
   {
     path: "/repo_tracker",
     name: "RepoTracker",
     component: RepoTracker,
-    meta: {
-      requiresAuth: true,
-    },
+    meta: { requiresAuth: false },
   },
   {
     path: "/pinnys_project",

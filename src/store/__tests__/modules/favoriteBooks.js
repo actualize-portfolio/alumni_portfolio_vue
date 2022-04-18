@@ -2,11 +2,9 @@ import favoriteBooks from "@/store/modules/favoriteBooks";
 import httpService from "@/services/HttpService";
 import store from "@/store";
 
-jest.mock("@/services/HttpService.js", () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-  delete: jest.fn(),
-}));
+jest.mock("@/services/HttpService");
+
+beforeEach(() => jest.clearAllMocks());
 
 describe("favoriteBooks module", () => {
   describe("actions", () => {
@@ -15,11 +13,14 @@ describe("favoriteBooks module", () => {
     beforeEach(() => (commit = jest.fn()));
 
     describe("loadBooks", () => {
-      beforeEach(() => {
-        httpService.get.mockImplementation((_, callback) =>
-          callback(200, { data: [{ title: "Go Blue" }] })
+      beforeEach(async () => {
+        httpService.get.mockImplementation(() =>
+          Promise.resolve({
+            data: [{ title: "Go Blue" }],
+          })
         );
-        favoriteBooks.actions.loadBooks({ commit });
+
+        await favoriteBooks.actions.loadBooks({ commit }, { page: 1 });
       });
 
       test("loadBooks calls commit with startLoading", () => {
@@ -34,9 +35,11 @@ describe("favoriteBooks module", () => {
     });
 
     describe("removeFavoriteBook", () => {
-      beforeEach(() => {
-        httpService.delete.mockImplementation((_, callback) =>
-          callback(200, {
+      test("removeFavoriteBook calls commit with destroyFavoriteBook", () => {
+        favoriteBooks.actions.removeFavoriteBook({ commit }, { id: 1 });
+
+        httpService.delete.mockImplementation(() =>
+          Promise.resolve({
             data: {
               id: 12,
               user_id: 3,
@@ -45,18 +48,26 @@ describe("favoriteBooks module", () => {
             errors: [],
           })
         );
-        favoriteBooks.actions.removeFavoriteBook({ commit }, { id: 1 });
+        expect(commit).toHaveBeenCalledWith("destroyFavoriteBook", { id: 1 });
       });
 
-      test("removeFavoriteBook calls commit with destroyFavoriteBook", () => {
-        expect(commit).toHaveBeenCalledWith("destroyFavoriteBook", { id: 1 });
+      test("restores favoriteBook if the call fails", async () => {
+        httpService.delete.mockImplementation(() => Promise.reject());
+
+        await favoriteBooks.actions.removeFavoriteBook({ commit }, { id: 1 });
+
+        expect(commit).toHaveBeenCalledWith("createFavoriteBook", { id: 1 });
       });
     });
 
     describe("setFavoriteBook", () => {
       beforeEach(() => {
-        httpService.post.mockImplementation((_, __, callback) =>
-          callback(200, {
+        favoriteBooks.actions.setFavoriteBook({ commit }, { id: 1 });
+      });
+
+      test("setFavoriteBook calls commit with createFavoriteBook", () => {
+        httpService.post.mockImplementation(() =>
+          Promise.resolve({
             data: {
               id: 15,
               user_id: 3,
@@ -65,11 +76,15 @@ describe("favoriteBooks module", () => {
             errors: [],
           })
         );
-        favoriteBooks.actions.setFavoriteBook({ commit }, { id: 1 });
+        expect(commit).toHaveBeenCalledWith("createFavoriteBook", { id: 1 });
       });
 
-      test("setFavoriteBook calls commit with createFavoriteBook", () => {
-        expect(commit).toHaveBeenCalledWith("createFavoriteBook", { id: 1 });
+      test("restores favoriteBook removal if the call fails", async () => {
+        httpService.post.mockImplementation(() => Promise.reject());
+
+        await favoriteBooks.actions.setFavoriteBook({ commit }, { id: 1 });
+
+        expect(commit).toHaveBeenCalledWith("destroyFavoriteBook", { id: 1 });
       });
     });
   });
