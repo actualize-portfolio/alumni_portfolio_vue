@@ -5,6 +5,9 @@ import "@fortawesome/fontawesome-free/js/fontawesome.js";
 import { createApp } from "vue";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
+import Notifications from "@kyvg/vue3-notification";
+import velocity from "velocity-animate";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -34,4 +37,5 @@ const app = createApp(App);
 
 app.use(router);
 app.use(store);
+app.use(Notifications, { velocity });
 app.mount("#app");

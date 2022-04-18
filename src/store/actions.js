@@ -1,3 +1,4 @@
+import { notify } from "@kyvg/vue3-notification";
 import HttpService from "@/services/HttpService";
 
 const initialize = ({ commit }) => {
@@ -19,12 +20,21 @@ const addApiRequest = ({ commit }, apiRequest) => {
 
 const login = ({ commit }, { username, password, redirectTo = "/" }) => {
   commit("startLoading");
-  HttpService.post("login", { username, password }).then((response) => {
-    if (response.data.token) {
-      commit("setToken", response.data.token);
-      document.location = redirectTo;
-    }
-  });
+  HttpService.post("login", { username, password })
+    .then((response) => {
+      if (response.data.token) {
+        commit("setToken", response.data.token);
+        document.location = redirectTo;
+      }
+    })
+    .catch((error) => {
+      notify({
+        group: "errors",
+        title: error.statusText,
+        text: error.data.errors.error,
+        type: "warn",
+      });
+    });
 };
 
 const createUser = ({ commit }, formData) => {

@@ -1,3 +1,5 @@
+import * as Notification from "@kyvg/vue3-notification";
+
 import actions from "@/store/actions";
 import httpService from "@/services/HttpService.js";
 
@@ -59,11 +61,19 @@ describe("actions", () => {
     });
 
     describe("when token is not obtained", () => {
+      let notifySpy;
+
       beforeEach(async () => {
+        notifySpy = jest.spyOn(Notification, "notify");
+
         httpService.post.mockImplementation(() =>
-          Promise.resolve({
-            data: {},
-            errors: ["bad request"],
+          Promise.reject({
+            statusText: "Unauthorized",
+            data: {
+              errors: {
+                error: "Invalid username or password",
+              },
+            },
           })
         );
 
@@ -75,6 +85,15 @@ describe("actions", () => {
 
       test("it doesn't try to set the token if it's not present", () => {
         expect(commit).not.toHaveBeenCalledWith("setToken");
+      });
+
+      test("notifies user with a flash message", () => {
+        expect(notifySpy).toHaveBeenCalledWith({
+          group: "errors",
+          text: "Invalid username or password",
+          title: "Unauthorized",
+          type: "warn",
+        });
       });
     });
   });

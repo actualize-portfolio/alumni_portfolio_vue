@@ -1,6 +1,11 @@
 <template>
   <TheNavBar />
   <div class="container-fluid">
+    <notifications
+      group="errors"
+      position="bottom right"
+      animation-type="velocity"
+    />
     <div class="form-check form-switch">
       <input
         :checked="showApiRequests"
