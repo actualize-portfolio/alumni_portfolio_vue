@@ -1,4 +1,4 @@
-# About Me Front End
+# Alumni Portfolio Front End
 
 This is the frontend portfolio application for the Alumni of Actualize Coding Bootcamp. It features curated experiences that are personally relevent to the contributors. The participants are expected to adhere to a work-like development pattern and treat this repository as though it meant the difference of uptime vs downtime for a production application. This means, but is not limited to...
 
