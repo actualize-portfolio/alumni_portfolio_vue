@@ -21,12 +21,4 @@ describe("ProjectInfo", () => {
   it("renders the element", () => {
     expect(wrapper.exists()).toBe(true);
   });
-
-  it("it validates the title", () => {
-    const validator = ProjectInfo.props.title.validator;
-
-    expect(validator("Title")).toBe(false);
-    expect(validator("Two-word Title")).toBe(true);
-    expect(validator("Three Word Title")).toBe(false);
-  });
 });
