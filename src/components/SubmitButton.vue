@@ -33,4 +33,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+button {
+  margin: 5px;
+}
+</style>
