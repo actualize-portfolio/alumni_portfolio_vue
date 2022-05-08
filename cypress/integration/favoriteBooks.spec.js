@@ -1,4 +1,4 @@
-describe("favoriteBooks", () => {
+xdescribe("favoriteBooks", () => {
   it("can navigate to favoriteBooks and back", () => {
     cy.clearLocalStorage();
     cy.visit("/");
