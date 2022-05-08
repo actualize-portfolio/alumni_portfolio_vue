@@ -9,8 +9,9 @@ node_modules
 .env.local
 .env.*.local
 
-# cypress video files
+# cypress video and screenshot files
 /cypress/videos
+cypress/screenshots/
 
 # Log files
 npm-debug.log*
