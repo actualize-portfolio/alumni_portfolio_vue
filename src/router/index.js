@@ -14,6 +14,8 @@ const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
 const NewUser = () =>
   import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
+const PathNotFound = () =>
+  import(/* webpackChunkName: "pathNotFound" */ "@/views/PathNotFound.vue");
 
 const routes = [
   {
@@ -49,6 +51,8 @@ const routes = [
     component: RepoTracker,
     meta: { requiresAuth: false },
   },
+  { path: "/404", component: PathNotFound },
+  { path: "/:pathMatch(.*)*", redirect: "/404" },
 ];
 
 const router = createRouter({ history: createWebHistory(), routes });

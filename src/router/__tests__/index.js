@@ -7,3 +7,11 @@ describe("when router.beforeEach is called", () => {
     expect(router.currentRoute._rawValue.fullPath).toEqual("/login");
   });
 });
+
+describe("when user navigates to unknown page", () => {
+  it("displays a 404 page", async () => {
+    await router.push("/asdf");
+
+    expect(router.currentRoute._rawValue.fullPath).toEqual("/404");
+  });
+});
