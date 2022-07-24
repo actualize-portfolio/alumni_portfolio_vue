@@ -2,7 +2,13 @@
   <canvas id="repoTrackerChart"></canvas>
 </template>
 <script>
-import Chart from "chart.js/auto";
+import {
+  Chart,
+  LinearScale,
+  BarElement,
+  BarController,
+  CategoryScale,
+} from "chart.js";
 
 export default {
   name: "RepoTrackerChart",
@@ -28,6 +34,8 @@ export default {
       this.createChart();
     },
     createChart() {
+      Chart.register(LinearScale, BarElement, BarController, CategoryScale);
+
       this.chart = new Chart(
         document.getElementById("repoTrackerChart").getContext("2d"),
         {
