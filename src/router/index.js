@@ -14,6 +14,8 @@ const LoginPage = () =>
   import(/* webpackChunkName: "loginPage" */ "@/views/LoginPage.vue");
 const NewUser = () =>
   import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
+const UnitConverter = () =>
+  import(/* webpackChunkName: "pathNotFound" */ "@/views/UnitConverter.vue");
 const PathNotFound = () =>
   import(/* webpackChunkName: "pathNotFound" */ "@/views/PathNotFound.vue");
 
@@ -49,6 +51,12 @@ const routes = [
     path: "/repo_tracker",
     name: "RepoTracker",
     component: RepoTracker,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/unit_converter",
+    name: "UnitConverter",
+    component: UnitConverter,
     meta: { requiresAuth: false },
   },
   { path: "/404", component: PathNotFound },
