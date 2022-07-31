@@ -35,6 +35,11 @@
             >Sunny Sorter</router-link
           >
         </li>
+        <li class="nav-item">
+          <router-link to="/unit_converter" class="nav-link"
+            >Unit Converter</router-link
+          >
+        </li>
       </ul>
     </div>
   </nav>
