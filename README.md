@@ -1,15 +1,15 @@
 # Alumni Portfolio Front End
 
-This is the frontend portfolio application for the Alumni of Actualize Coding Bootcamp. It features curated experiences that are personally relevent to the contributors. The participants are expected to adhere to a work-like development pattern and treat this repository as though it meant the difference of uptime vs downtime for a production application. This means, but is not limited to...
+This is the frontend portfolio application for the Alumni of Actualize Coding Bootcamp. It features curated experiences that are personally relevant to contributors. The participants are expected to adhere to a work-like development pattern and treat this repository as though it meant the difference of uptime vs downtime for a production application. This means, but is not limited to...
 
-- Attrtibuting work to stories in the [development project board](https://github.com/actualize-portfolio/alumni_portfolio_vue/projects/1).
+- Attributing work to stories in the [development project board](https://github.com/actualize-portfolio/alumni_portfolio_vue/projects/1).
 - Keeping PRs in scope to avoid [scope-creep](https://galvintech.com/software-development-how-to-prevent-scope-creep/).
 - Testing new code both [unit and end-to-end](https://prodperfect.com/blog/test-development/end-to-end-or-unit-testing-which-tests-for-which-bugs/).
 - Seeking [peer review](https://www.atlassian.com/blog/git/written-unwritten-guide-pull-requests) for PRs.
 - Protecting secrets during the development process.
-- Shepparding PRs throught the deployment.
+- Shepparding PRs through the deployment.
 
-The main goals are to give Actualize alumni with a chance to experience working in a production stack without major risk and provide a place to showcase work they are proud of.
+The main goals are to give Actualize alumni a chance to experience working in a production stack without major risk and provide a place to showcase work they are proud of.
 
 ## Environment setup
 
