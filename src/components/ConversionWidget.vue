@@ -11,10 +11,7 @@
           {{ inputUnit }}
         </button>
         <ul class="dropdown-menu">
-          <div
-            v-for="(units, category) in unitCategories"
-            :key="`input-${category}`"
-          >
+          <div v-for="(units, category) in unitCategories" :key="`input-${category}`">
             <li class="dropdown-category">
               {{ category }}
               <hr class="dropdown-divider" />
@@ -31,13 +28,7 @@
         </ul>
       </div>
 
-      <input
-        type="number"
-        step="any"
-        v-model="input"
-        class="form-control input-units"
-        aria-label="input"
-      />
+      <input type="number" step="any" v-model="input" class="form-control input-units" aria-label="input" />
 
       <div>
         <button
@@ -66,10 +57,12 @@
   </div>
 </template>
 <script>
-import conversionMixin from "@/mixins/conversionMixin.js";
+import textMixin from "@/mixins/textMixin";
+import conversionMixin from "@/mixins/conversionMixin";
+
 export default {
   name: "ConversionWidget",
-  mixins: [conversionMixin],
+  mixins: [conversionMixin, textMixin],
   methods: {
     changeInputUnitAndCategory(unit, category) {
       this.inputUnit = unit;
@@ -95,10 +88,10 @@ export default {
     },
     result() {
       const result = this.input / (this.inputUnits() / this.outputUnits());
+      const inputUnit = this.$_textMixin_maybeSingularize(this.input, this.inputUnit);
+      const outputUnit = this.$_textMixin_maybeSingularize(result, this.outputUnit);
 
-      return `${this.input || 0} ${this.inputUnit} = ${result} ${
-        this.outputUnit
-      }`;
+      return `${this.input || 0} ${inputUnit} = ${result} ${outputUnit}`;
     },
   },
   data() {
