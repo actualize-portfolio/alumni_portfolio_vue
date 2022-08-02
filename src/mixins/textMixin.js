@@ -1,4 +1,4 @@
-import pluralize from "pluralize";
+import { singular } from "pluralize";
 
 const textMixin = {
   methods: {
@@ -9,7 +9,7 @@ const textMixin = {
       return integer.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     $_textMixin_maybeSingularize(count, word) {
-      return count == 1 ? pluralize.singular(word) : word;
+      return count == 1 ? singular(word) : word;
     },
   },
 };
