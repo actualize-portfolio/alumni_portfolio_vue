@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@kyvg/vue3-notification": "^2.3.6",
     "@popperjs/core": "^2.11.5",
-    "@sentry/tracing": "^6.13.3",
+    "@sentry/tracing": "^7.8.1",
     "@sentry/vue": "^6.13.3",
     "@vuelidate/core": "^2.0.0-alpha.32",
     "@vuelidate/validators": "^2.0.0-alpha.25",
