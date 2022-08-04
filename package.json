@@ -13,11 +13,11 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "^6.1.2",
     "@kyvg/vue3-notification": "^2.3.6",
     "@popperjs/core": "^2.11.5",
     "@sentry/tracing": "^7.8.1",
-    "@sentry/vue": "^6.13.3",
+    "@sentry/vue": "^7.8.1",
     "@vuelidate/core": "^2.0.0-alpha.32",
     "@vuelidate/validators": "^2.0.0-alpha.25",
     "axios": "^0.27.2",
