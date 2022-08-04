@@ -18,7 +18,7 @@
     "@popperjs/core": "^2.11.5",
     "@sentry/tracing": "^7.8.1",
     "@sentry/vue": "^7.8.1",
-    "@vuelidate/core": "^2.0.0-alpha.32",
+    "@vuelidate/core": "^2.0.0-alpha.44",
     "@vuelidate/validators": "^2.0.0-alpha.25",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
