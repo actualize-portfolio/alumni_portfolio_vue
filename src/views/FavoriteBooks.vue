@@ -47,7 +47,7 @@ import ProjectInfo from "@/components/ProjectInfo.vue";
 import FavoriteBooksTable from "@/components/FavoriteBooksTable.vue";
 
 export default {
-  name: "Books",
+  name: "FavoriteBooks",
   components: {
     ProjectInfo,
     FavoriteBooksTable,
