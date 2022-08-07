@@ -47,11 +47,19 @@ const createUser = ({ commit }, formData) => {
   });
 };
 
+const getUser = ({ commit }, user_id) => {
+  commit("startLoading");
+  HttpService.get(`users/${user_id}`).then((response) => {
+    commit("setUser", response.data.user);
+  });
+};
+
 export default {
   initialize,
   stopLoading,
   login,
   createUser,
+  getUser,
   toggleTheApiVisualizer,
   addApiRequest,
 };

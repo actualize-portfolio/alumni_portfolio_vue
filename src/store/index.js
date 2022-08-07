@@ -16,6 +16,7 @@ const store = new Vuex.Store({
     jwt: null,
     storeReady: false,
     loading: false,
+    user: {},
     apiVisualizer: {
       show: true,
       apiRequests: [],

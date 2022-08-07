@@ -19,6 +19,7 @@ describe("store", () => {
           repos: [],
           categories: [],
         },
+        user: {},
         apiVisualizer: {
           apiRequests: [],
           show: true,

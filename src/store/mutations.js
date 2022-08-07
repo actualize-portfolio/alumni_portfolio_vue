@@ -8,6 +8,10 @@ const setToken = (state, token) => {
   state.jwt = token;
 };
 
+const setUser = (state, user) => {
+  state.user = user;
+};
+
 const startLoading = (state) => {
   state.loading = true;
 };
@@ -51,6 +55,7 @@ function filterSensitiveKeys(object = {}) {
 export default {
   initialize,
   setToken,
+  setUser,
   startLoading,
   stopLoading,
   toggleApiVisualizer,

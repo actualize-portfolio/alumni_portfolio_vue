@@ -98,6 +98,37 @@ describe("actions", () => {
     });
   });
 
+  describe("getUser", () => {
+    const userId = 2;
+
+    beforeEach(async () => {
+      httpService.get.mockImplementation(() =>
+        Promise.resolve({
+          data: {
+            user: {
+              id: 2,
+              username: "demo_user@test.com",
+              age: 30,
+            },
+            token: "imatoken",
+          },
+          errors: [],
+        })
+      );
+
+      await actions.getUser({ commit }, userId);
+    });
+
+    it("performs user fetch", () => {
+      expect(commit).toHaveBeenCalledWith("startLoading");
+      expect(commit).toHaveBeenCalledWith("setUser", {
+        id: 2,
+        username: "demo_user@test.com",
+        age: 30,
+      });
+    });
+  });
+
   describe("createUser", () => {
     let formData;
 

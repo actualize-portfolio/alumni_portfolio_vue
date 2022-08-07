@@ -15,15 +15,23 @@ const LoginPage = () =>
 const NewUser = () =>
   import(/* webpackChunkName: "newUser" */ "@/views/NewUser.vue");
 const UnitConverter = () =>
-  import(/* webpackChunkName: "pathNotFound" */ "@/views/UnitConverter.vue");
+  import(/* webpackChunkName: "unitConverter" */ "@/views/UnitConverter.vue");
 const PathNotFound = () =>
   import(/* webpackChunkName: "pathNotFound" */ "@/views/PathNotFound.vue");
+const ProfilePage = () =>
+  import(/* webpackChunkName: "profilePage" */ "@/views/ProfilePage.vue");
 
 const routes = [
   {
     path: "/",
     name: "LandingPage",
     component: LandingPage,
+  },
+  {
+    path: "/profile",
+    name: "ProfilePage",
+    component: ProfilePage,
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
