@@ -69,6 +69,10 @@ class HttpService {
   post(path, payload) {
     return this.service.post(path, payload);
   }
+
+  patch(path, payload) {
+    return this.service.patch(path, payload);
+  }
 }
 
 export default new HttpService();

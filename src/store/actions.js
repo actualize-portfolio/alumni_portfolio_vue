@@ -24,6 +24,7 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
     .then((response) => {
       if (response.data.token) {
         commit("setToken", response.data.token);
+        commit("setUser", response.data.user);
         document.location = redirectTo;
       }
     })
@@ -54,12 +55,20 @@ const getUser = ({ commit }, user_id) => {
   });
 };
 
+const updateUser = ({ commit }, userData) => {
+  commit("startLoading");
+  HttpService.patch(`users/${userData.id}`, userData).then((response) => {
+    commit("setUser", response.data.user);
+  });
+};
+
 export default {
   initialize,
   stopLoading,
   login,
   createUser,
   getUser,
+  updateUser,
   toggleTheApiVisualizer,
   addApiRequest,
 };
