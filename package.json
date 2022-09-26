@@ -23,7 +23,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "chart.js": "^3.9.1",
-    "core-js": "^3.24.1",
+    "core-js": "^3.25.3",
     "datamaps": "^0.5.9",
     "global": "^4.4.0",
     "jsonwebtoken": "^8.5.1",
