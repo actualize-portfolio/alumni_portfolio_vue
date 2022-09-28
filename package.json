@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.2",
-    "@kyvg/vue3-notification": "^2.3.6",
+    "@kyvg/vue3-notification": "^2.4.1",
     "@popperjs/core": "^2.11.6",
     "@sentry/tracing": "^7.11.1",
     "@sentry/vue": "^7.13.0",
