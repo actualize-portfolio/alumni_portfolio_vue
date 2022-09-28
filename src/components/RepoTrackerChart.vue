@@ -3,11 +3,12 @@
 </template>
 <script>
 import {
-  Chart,
-  LinearScale,
-  BarElement,
   BarController,
+  BarElement,
   CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
 } from "chart.js";
 
 export default {
@@ -34,7 +35,13 @@ export default {
       this.createChart();
     },
     createChart() {
-      Chart.register(LinearScale, BarElement, BarController, CategoryScale);
+      Chart.register(
+        BarController,
+        BarElement,
+        CategoryScale,
+        Legend,
+        LinearScale
+      );
 
       this.chart = new Chart(
         document.getElementById("repoTrackerChart").getContext("2d"),
