@@ -4,13 +4,7 @@
     class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
     id="sideNav"
   >
-    <div id="login" class="navlink">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">Log In</router-link>
-        </li>
-      </ul>
-    </div>
+    <the-session-link></the-session-link>
     <router-link to="/" class="navbar-brand">
       <span class="d-block d-lg-none">Alumni Portfolio</span>
       <span class="d-none d-lg-block"
@@ -53,7 +47,9 @@
   </nav>
 </template>
 <script>
+import TheSessionLink from "./TheSessionLink.vue";
 export default {
+  components: { TheSessionLink },
   name: "TheNavBar",
   methods: {
     collapseNavbar() {
