@@ -14,8 +14,6 @@ describe("click login link", () => {
 
     cy.wait("@login");
     cy.get("#login").contains("Log Out").click();
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq("/");
-    });
+    cy.location("pathname").should("eq", "/");
   });
 });

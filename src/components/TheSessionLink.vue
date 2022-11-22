@@ -20,7 +20,6 @@ export default {
   name: "TheSessionLink",
   methods: {
     userLoggedIn() {
-      //Access the store for the JWT and return true if jtw exists
       return this.$store.state.jwt;
     },
     destroySession() {
