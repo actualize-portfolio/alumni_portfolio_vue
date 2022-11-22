@@ -28,6 +28,14 @@ describe("actions", () => {
     });
   });
 
+  describe("logout", () => {
+    test("logout calls commit with setToken with an empty string", () => {
+      actions.logout({ commit });
+
+      expect(commit).toHaveBeenCalledWith("setToken", "");
+    });
+  });
+
   describe("login", () => {
     describe("when token obtained", () => {
       beforeEach(async () => {
