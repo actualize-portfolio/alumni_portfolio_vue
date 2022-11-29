@@ -1,7 +1,8 @@
 describe("click login link", () => {
   it("directs us to the login page and changes the link to logout and redirects to landing page.", () => {
     cy.clearLocalStorage();
-    cy.visit("/", { timeout: 30000 });
+    cy.visit("/");
+    cy.get("#login", { timeout: 30000 });
     cy.get("#login").contains("Log In").click();
     cy.intercept("POST", "/api/v1/login", {
       statusCode: 200,
