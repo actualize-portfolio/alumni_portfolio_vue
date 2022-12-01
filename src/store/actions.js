@@ -1,5 +1,6 @@
 import { notify } from "@kyvg/vue3-notification";
 import HttpService from "@/services/HttpService";
+import router from "@/router";
 
 const initialize = ({ commit }) => {
   commit("stopLoading");
@@ -37,6 +38,11 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
     });
 };
 
+const logout = ({ commit }) => {
+  commit("setToken", "");
+  router.push({ name: "LandingPage" });
+};
+
 const createUser = ({ commit }, formData) => {
   commit("startLoading");
   HttpService.post("users", formData).then((response) => {
@@ -51,6 +57,7 @@ export default {
   initialize,
   stopLoading,
   login,
+  logout,
   createUser,
   toggleTheApiVisualizer,
   addApiRequest,
