@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f1946d23-e939-415d-8aa3-63636fad941d/deploy-status)](https://app.netlify.com/sites/alumni-portfolio/deploys)
+
 # Alumni Portfolio Front End
 
 This is the frontend portfolio application for the Alumni of Actualize Coding Bootcamp. It features curated experiences that are personally relevent to the contributors. The participants are expected to adhere to a work-like development pattern and treat this repository as though it meant the difference of uptime vs downtime for a production application. This means, but is not limited to...
