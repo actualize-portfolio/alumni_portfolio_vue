@@ -1,43 +1,25 @@
 <template>
-  <ProjectInfo
-    title="Sunny Sorter"
-    :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
-    description="Tabulates the best episodes of Sunny"
-  />
+  <ProjectInfo title="Sunny Sorter" :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
+    description="Tabulates the best episodes of Sunny" />
   <div class="row">
-    <div
-      v-for="episode in $store.state.sunnySorter.episodes"
-      :key="episode.id"
-      class="col"
-    >
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ episode.title }}</h5>
-          <p class="card-text">S{{ episode.season }}, E{{ episode.episode }}</p>
-          <p>Aired: {{ episode.airdate }}</p>
-          <p><a :href="episode.tvmaze_link" target="_blank">info</a></p>
-          <button @click="vote(episode.id)" class="btn btn-primary">
-            This One's Better
-          </button>
-        </div>
-      </div>
+    <div v-for="episode in $store.state.sunnySorter.episodes" :key="episode.id" class="col">
+      <SunnyEpisode :episode="episode" />
     </div>
   </div>
   <div>
     <h3>Public Rankings</h3>
+    <h6>Best Season: <span>{{ favoriteSeasonPublic() }}</span></h6>
     <ol>
-      <li v-for="episode in $store.state.sunnySorter.topTen" :key="episode.id">
+      <li v-for="episode in $store.state.sunnySorter.topHundred" :key="episode.id">
         {{ episode.title }}
       </li>
     </ol>
   </div>
   <div>
     <h3>Your Rankings</h3>
+    <h6>Best Season: <span>{{ favoriteSeason() }}</span></h6>
     <ol>
-      <li
-        v-for="episode in $store.state.sunnySorter.userTopTen"
-        :key="episode.id"
-      >
+      <li v-for="episode in $store.state.sunnySorter.userTopHundred" :key="episode.id">
         {{ episode.title }}
       </li>
     </ol>
@@ -46,33 +28,37 @@
 
 <script>
 import ProjectInfo from "@/components/ProjectInfo";
+import SunnyEpisode from "../components/SunnyEpisode.vue";
+import mathMixin from "@/mixins/mathMixin.js";
 export default {
   name: "SunnySorter",
   components: {
     ProjectInfo,
+    SunnyEpisode
   },
+  mixins: [mathMixin],
   methods: {
     getSunnyEpisodes() {
       this.$store.dispatch("getSunnyEpisodes");
     },
-    getTopTenEpisodes() {
-      this.$store.dispatch("getTopTenEpisodes");
+    gettopHundredEpisodes() {
+      this.$store.dispatch("gettopHundredEpisodes");
     },
-    vote(id) {
-      const betterEpisodeId = id;
-      const worseEpisode = this.$store.state.sunnySorter.episodes.filter(
-        (episode) => episode.id != id
-      );
-      this.$store.dispatch("vote", {
-        better_id: betterEpisodeId,
-        worse_id: worseEpisode[0].id,
-      });
+    favoriteSeason() {
+      const seasons = this.$store.state.sunnySorter.userTopHundred.map(episode => episode.season)
+      return this.$_mathMixin_mode(seasons)
+    },
+    favoriteSeasonPublic() {
+      const seasons = this.$store.state.sunnySorter.topHundred.map(episode => episode.season)
+      return this.$_mathMixin_mode(seasons)
     },
   },
   created() {
     this.getSunnyEpisodes();
-    this.getTopTenEpisodes();
+    this.gettopHundredEpisodes();
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>
