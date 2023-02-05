@@ -62,23 +62,23 @@ describe("sunnySorter module", () => {
         });
       });
 
-      describe("setTopTenEpisodes", () => {
+      describe("setTopHundredEpisodes", () => {
         beforeEach(async () => {
           episodes = {
-            top_ten: [{ id: 1 }, { id: 2 }],
-            top_ten_by_user: [{ id: 1 }, { id: 2 }],
+            top_hundred: [{ id: 1 }, { id: 2 }],
+            top_hundred_by_user: [{ id: 1 }, { id: 2 }],
           };
-          await sunnySorter.actions.getTopTenEpisodes({ commit });
+          await sunnySorter.actions.getTopHundredEpisodes({ commit });
         });
 
-        test("setTopTenEpisodes calls commit with setEpisodes", () => {
+        test("setTopHundredEpisodes calls commit with setEpisodes", () => {
           expect(commit).toHaveBeenCalledWith(
-            "setTopTenEpisodes",
-            episodes.top_ten
+            "setTopHundredEpisodes",
+            episodes.top_hundred
           );
           expect(commit).toHaveBeenCalledWith(
-            "setUserTopTenEpisodes",
-            episodes.top_ten_by_user
+            "setUserTopHundredEpisodes",
+            episodes.top_hundred_by_user
           );
         });
       });
@@ -96,19 +96,19 @@ describe("sunnySorter module", () => {
       });
     });
 
-    describe("setTopTenEpisodes", () => {
+    describe("setTopHundredEpisodes", () => {
       it("sets top ten episodes to the passed value", () => {
-        sunnySorter.mutations.setTopTenEpisodes(state, []);
+        sunnySorter.mutations.setTopHundredEpisodes(state, []);
 
-        expect(state.topTen).toEqual([]);
+        expect(state.topHundred).toEqual([]);
       });
     });
 
-    describe("setUserTopTenEpisodes", () => {
+    describe("setUserTopHundredEpisodes", () => {
       it("sets user top ten episodes to the passed value", () => {
-        sunnySorter.mutations.setUserTopTenEpisodes(state, []);
+        sunnySorter.mutations.setUserTopHundredEpisodes(state, []);
 
-        expect(state.userTopTen).toEqual([]);
+        expect(state.userTopHundred).toEqual([]);
       });
     });
   });
