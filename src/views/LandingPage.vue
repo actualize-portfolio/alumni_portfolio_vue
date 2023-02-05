@@ -77,18 +77,18 @@
           <a target="_blank" href="https://rubyonrails.org/">Ruby on Rails</a>
         </div>
         <p class="lead mb-3">
-          The server side is Rails version 6 running in API mode with a Postgres
+          The server side is Rails version 7 running in API mode with a Postgres
           database and a Sidekiq sidecar for asynchronous tasks. It uses a
           service object interactor pattern and employs some basic
           authentication with Bcrypt. It is hosted on Heroku.com at
           <span
-            ><strong>https://alumni-portfolio-api.herokuapp.com/</strong></span
+            ><strong>web-production-ad69e.up.railway.app</strong></span
           >
         </p>
       </div>
       <div class="flex-shrink-0">
         <span class="text-primary"
-          ><a target="_blank" href="https://github.com/actualize-portfolio/alumni_portfolio_api"
+          ><a target="_blank" href="https://github.com/actualize-portfolio/alumni_portfolio_vue"
             >See project on Github</a
           ></span
         >
