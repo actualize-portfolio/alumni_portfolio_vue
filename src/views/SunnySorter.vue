@@ -8,7 +8,7 @@
   </div>
   <div>
     <h3>Public Rankings</h3>
-    <h6>Best Season: <span>{{ favoriteSeasonPublic() }}</span></h6>
+    <h6>Best Season: <span>{{ favoriteSeasonPublic }}</span></h6>
     <ol>
       <li v-for="episode in $store.state.sunnySorter.topHundred" :key="episode.id">
         {{ episode.title }}
@@ -17,7 +17,7 @@
   </div>
   <div>
     <h3>Your Rankings</h3>
-    <h6>Best Season: <span>{{ favoriteSeason() }}</span></h6>
+    <h6>Best Season: <span>{{ favoriteSeason }}</span></h6>
     <ol>
       <li v-for="episode in $store.state.sunnySorter.userTopHundred" :key="episode.id">
         {{ episode.title }}
@@ -29,33 +29,33 @@
 <script>
 import ProjectInfo from "@/components/ProjectInfo";
 import SunnyEpisode from "../components/SunnyEpisode.vue";
-import mathMixin from "@/mixins/mathMixin.js";
 export default {
   name: "SunnySorter",
   components: {
     ProjectInfo,
     SunnyEpisode
   },
-  mixins: [mathMixin],
   methods: {
     getSunnyEpisodes() {
       this.$store.dispatch("getSunnyEpisodes");
     },
-    gettopHundredEpisodes() {
-      this.$store.dispatch("gettopHundredEpisodes");
+    getTopHundredEpisodes() {
+      this.$store.dispatch("getTopHundredEpisodes");
     },
+  },
+  computed: {
     favoriteSeason() {
-      const seasons = this.$store.state.sunnySorter.userTopHundred.map(episode => episode.season)
-      return this.$_mathMixin_mode(seasons)
+      const seasons = this.$store.state.sunnySorter.rankedSeasons
+      return Object.keys(seasons).reduce((a, b) => seasons[a] > seasons[b] ? a : b);
     },
     favoriteSeasonPublic() {
-      const seasons = this.$store.state.sunnySorter.topHundred.map(episode => episode.season)
-      return this.$_mathMixin_mode(seasons)
+      const seasons = this.$store.state.sunnySorter.userRankedSeasons
+      return Object.keys(seasons).reduce((a, b) => seasons[a] > seasons[b] ? a : b);
     },
   },
   created() {
     this.getSunnyEpisodes();
-    this.gettopHundredEpisodes();
+    this.getTopHundredEpisodes();
   },
 };
 </script>

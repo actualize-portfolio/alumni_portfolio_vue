@@ -11,6 +11,8 @@ describe("store", () => {
           episodes: [],
           topHundred: [],
           userTopHundred: [],
+          rankedSeasons: {},
+          userRankedSeasons: {}
         },
         favoriteBooks: {
           books: [],
