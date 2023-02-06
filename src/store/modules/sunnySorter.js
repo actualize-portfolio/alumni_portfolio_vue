@@ -6,6 +6,8 @@ const repoTracker = {
       episodes: [],
       topHundred: [],
       userTopHundred: [],
+      rankedSeasons: {},
+      userRankedSeasons: {}
     };
   },
   mutations: {
@@ -17,6 +19,12 @@ const repoTracker = {
     },
     setUserTopHundredEpisodes(state, episodes) {
       state.userTopHundred = episodes;
+    },
+    setRankedSeasons(state, seasons) {
+      state.rankedSeasons = seasons;
+    },
+    setUserRankedSeasons(state, seasons) {
+      state.userRankedSeasons = seasons;
     },
   },
   actions: {
@@ -32,6 +40,8 @@ const repoTracker = {
       HttpService.get("sunny_episodes").then((response) => {
         commit("setTopHundredEpisodes", response.data.top_hundred);
         commit("setUserTopHundredEpisodes", response.data.top_hundred_by_user);
+        commit("setRankedSeasons", response.data.ranked_seasons);
+        commit("setUserRankedSeasons", response.data.ranked_seasons_by_user);
       });
     },
     vote({ commit }, { better_id, worse_id }) {
