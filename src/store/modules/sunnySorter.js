@@ -4,19 +4,27 @@ const repoTracker = {
   state() {
     return {
       episodes: [],
-      topTen: [],
-      userTopTen: [],
+      topHundred: [],
+      userTopHundred: [],
+      rankedSeasons: {},
+      userRankedSeasons: {}
     };
   },
   mutations: {
     setEpisodes(state, episodes) {
       state.episodes = episodes;
     },
-    setTopTenEpisodes(state, episodes) {
-      state.topTen = episodes;
+    setTopHundredEpisodes(state, episodes) {
+      state.topHundred = episodes;
     },
-    setUserTopTenEpisodes(state, episodes) {
-      state.userTopTen = episodes;
+    setUserTopHundredEpisodes(state, episodes) {
+      state.userTopHundred = episodes;
+    },
+    setRankedSeasons(state, seasons) {
+      state.rankedSeasons = seasons;
+    },
+    setUserRankedSeasons(state, seasons) {
+      state.userRankedSeasons = seasons;
     },
   },
   actions: {
@@ -28,10 +36,12 @@ const repoTracker = {
         commit("setEpisodes", response.data);
       });
     },
-    getTopTenEpisodes({ commit }) {
+    getTopHundredEpisodes({ commit }) {
       HttpService.get("sunny_episodes").then((response) => {
-        commit("setTopTenEpisodes", response.data.top_ten);
-        commit("setUserTopTenEpisodes", response.data.top_ten_by_user);
+        commit("setTopHundredEpisodes", response.data.top_hundred);
+        commit("setUserTopHundredEpisodes", response.data.top_hundred_by_user);
+        commit("setRankedSeasons", response.data.ranked_seasons);
+        commit("setUserRankedSeasons", response.data.ranked_seasons_by_user);
       });
     },
     vote({ commit }, { better_id, worse_id }) {

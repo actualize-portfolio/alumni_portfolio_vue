@@ -9,8 +9,10 @@ describe("store", () => {
         loading: false,
         sunnySorter: {
           episodes: [],
-          topTen: [],
-          userTopTen: [],
+          topHundred: [],
+          userTopHundred: [],
+          rankedSeasons: {},
+          userRankedSeasons: {}
         },
         favoriteBooks: {
           books: [],
