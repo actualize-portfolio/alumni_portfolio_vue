@@ -25,7 +25,7 @@ const login = ({ commit }, { username, password, redirectTo = "/" }) => {
     .then((response) => {
       if (response.data.token) {
         commit("setToken", response.data.token);
-        document.location = redirectTo;
+        router.push(redirectTo)
       }
     })
     .catch((error) => {

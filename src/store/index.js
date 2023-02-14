@@ -1,5 +1,4 @@
 import Vuex from "vuex";
-import VuexPersistence from "vuex-persist";
 import favoriteBooks from "@/store/modules/favoriteBooks";
 import repoTracker from "@/store/modules/repoTracker";
 import sunnySorter from "@/store/modules/sunnySorter";
@@ -23,7 +22,6 @@ const store = new Vuex.Store({
   },
   actions,
   mutations,
-  plugins: [new VuexPersistence().plugin],
 });
 
 export default store;
