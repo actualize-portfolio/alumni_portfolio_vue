@@ -63,8 +63,8 @@
         <p class="lead mb-3">
           The server side is Rails version 7 running in API mode with a Postgres database and a Sidekiq sidecar for
           asynchronous tasks. It uses a service object interactor pattern and employs some basic authentication with
-          Bcrypt. It is hosted on Railway.com at
-          <span><strong>https://web-production-ad69e.up.railway.app/api/v1/github_repos</strong></span>
+          Bcrypt. It is hosted on railway.app at
+          <span><strong>https://web-production-ad69e.up.railway.app/api/v1</strong></span>
         </p>
       </div>
       <div class="flex-shrink-0">
