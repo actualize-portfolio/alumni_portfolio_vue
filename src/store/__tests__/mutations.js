@@ -12,14 +12,6 @@ describe("mutations", () => {
     });
   });
 
-  describe("setToken", () => {
-    it("sets jwt to the passed token", () => {
-      mutations.setToken(state, "imatoken");
-
-      expect(state.jwt).toEqual("imatoken");
-    });
-  });
-
   describe("startLoading", () => {
     it("sets loading to true", () => {
       state.loading = false;

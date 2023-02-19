@@ -4,9 +4,9 @@ describe("store", () => {
   describe("state", () => {
     it("has starting state", () => {
       expect(store.state).toEqual({
-        jwt: null,
         storeReady: false,
         loading: false,
+        sessions: {},
         sunnySorter: {
           episodes: [],
           topHundred: [],
