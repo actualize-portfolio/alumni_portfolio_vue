@@ -1,6 +1,7 @@
 <template>
   <ProjectInfo title="Sunny Sorter" :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
     description="Tabulates the best episodes of Sunny" />
+  <h4 class="question">Which episode do you like more?</h4>
   <div class="row">
     <div v-for="episode in $store.state.sunnySorter.episodes" :key="episode.id" class="col">
       <SunnyEpisode :episode="episode" />
@@ -65,5 +66,7 @@ export default {
 };
 </script>
 <style scoped>
-
+  .question {
+    text-align: center;
+  }
 </style>
