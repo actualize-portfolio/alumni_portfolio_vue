@@ -1,6 +1,7 @@
 <template>
   <ProjectInfo title="Sunny Sorter" :contributor="{ name: 'Jamie Gates', email: 'gatorjuice@gmail.com' }"
     description="Tabulates the best episodes of Sunny" />
+  <h4 class="question">Which episode do you like more?</h4>
   <div class="row">
     <div v-for="episode in $store.state.sunnySorter.episodes" :key="episode.id" class="col">
       <SunnyEpisode :episode="episode" />
@@ -42,15 +43,20 @@ export default {
     getTopHundredEpisodes() {
       this.$store.dispatch("getTopHundredEpisodes");
     },
+    getFavoriteSeason(seasons) {
+      if (Object.keys(seasons).length < 1) {
+        return 'No Rankings'
+      } else {
+        return Object.keys(seasons).reduce((a, b) => seasons[a] > seasons[b] ? a : b);
+      }
+    }
   },
   computed: {
-    favoriteSeason() {
-      const seasons = this.$store.state.sunnySorter.rankedSeasons
-      return Object.keys(seasons).reduce((a, b) => seasons[a] > seasons[b] ? a : b);
-    },
     favoriteSeasonPublic() {
-      const seasons = this.$store.state.sunnySorter.userRankedSeasons
-      return Object.keys(seasons).reduce((a, b) => seasons[a] > seasons[b] ? a : b);
+      return this.getFavoriteSeason(this.$store.state.sunnySorter.rankedSeasons)
+    },
+    favoriteSeason() {
+      return this.getFavoriteSeason(this.$store.state.sunnySorter.userRankedSeasons)
     },
   },
   created() {
@@ -60,5 +66,7 @@ export default {
 };
 </script>
 <style scoped>
-
+  .question {
+    text-align: center;
+  }
 </style>

@@ -10,7 +10,7 @@ class HttpService {
     let service = axios.create();
 
     service.interceptors.request.use((request) => {
-      const jwt = JSON.parse(localStorage.vuex)["jwt"];
+      const jwt = store.state.sessions.jwt;
 
       if (jwt) request.headers.common.Authorization = `Bearer ${jwt}`;
 

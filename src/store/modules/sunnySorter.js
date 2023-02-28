@@ -1,6 +1,6 @@
 import HttpService from "@/services/HttpService";
 
-const repoTracker = {
+const sunnySorter = {
   state() {
     return {
       episodes: [],
@@ -55,4 +55,4 @@ const repoTracker = {
   },
 };
 
-export default repoTracker;
+export default sunnySorter;

@@ -1,13 +1,10 @@
 <template>
-  <div class="card">
+  <div class="card" @click="vote(episode.id)">
     <div class="card-body">
-      <h5 class="card-title">{{ episode.title }}</h5>
+      <h6 class="card-title">{{ episode.title }}</h6>
       <p class="card-text">S{{ episode.season }}, E{{ episode.episode }}</p>
       <p>Aired: {{ episode.airdate }}</p>
       <p><a :href="episode.tvmaze_link" target="_blank">info</a></p>
-      <button @click="vote(episode.id)" class="btn btn-primary">
-        This One's Better
-      </button>
     </div>
   </div>
 </template>
@@ -36,5 +33,19 @@ export default {
 };
 </script>
 <style scoped>
-
+  .card-title {
+    line-height: 1em;
+    height: 3em;
+    float: left;
+  }
+  .card-text {
+    clear: both;
+  }
+  .card {
+    transition: border-width 0.2s;
+  }
+  .card:hover {
+    border-color: #bd5d38;
+    background-color: bisque;
+  }
 </style>

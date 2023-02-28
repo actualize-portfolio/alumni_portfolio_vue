@@ -65,9 +65,9 @@ const routes = [
 
 const router = createRouter({ history: createWebHistory(), routes });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const jwt = store.state.jwt;
+    const jwt = store.state.sessions.jwt;
 
     if (!jwt || decode(jwt).exp < new Date() / 1000) {
       next({

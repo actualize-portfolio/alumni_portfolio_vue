@@ -20,7 +20,7 @@ export default {
   name: "TheSessionLink",
   methods: {
     userLoggedIn() {
-      return this.$store.state.jwt;
+      return this.$store.state.sessions.jwt;
     },
     destroySession() {
       this.$store.dispatch("logout");
