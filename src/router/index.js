@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { decode } from "jsonwebtoken";
+import jwt_decode from "jwt-decode";
 import store from "@/store";
 
 const LandingPage = () =>
@@ -69,7 +69,7 @@ router.beforeEach((to, _from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const jwt = store.state.sessions.jwt;
 
-    if (!jwt || decode(jwt).exp < new Date() / 1000) {
+    if (!jwt || jwt_decode(jwt).exp < new Date() / 1000) {
       next({
         name: "LoginPage",
         query: {

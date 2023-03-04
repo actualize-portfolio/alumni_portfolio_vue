@@ -1,7 +1,8 @@
 module.exports = {
   preset: "@vue/cli-plugin-unit-jest",
   transform: {
-    "^.+\\.vue$": "vue-jest",
+    "^.+\\.vue$": "@vue/vue3-jest",
+    '^.+\\js$': 'babel-jest',
   },
   testMatch: ["**/__tests__/**/*.js"],
   // collectCoverageFrom: [
@@ -14,7 +15,7 @@ module.exports = {
       branches: 74.19,
       functions: 80,
       lines: 80,
-      statements: -30,
+      statements: -33,
     },
   },
 };
