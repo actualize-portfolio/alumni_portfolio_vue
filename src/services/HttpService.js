@@ -12,7 +12,7 @@ class HttpService {
     service.interceptors.request.use((request) => {
       const jwt = store.state.sessions.jwt;
 
-      if (jwt) request.headers.common.Authorization = `Bearer ${jwt}`;
+      if (jwt) request.headers['Authorization'] = `Bearer ${jwt}`;
 
       return request;
     });
